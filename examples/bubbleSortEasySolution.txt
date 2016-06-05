@@ -1,0 +1,41 @@
+var fruits = [ 'grape', 'banana', 'apple', 'orange', 'apricot', 'kiwi', 'strawberry '];
+
+function bubbleSort (list) {
+    var count, position, len = list.length, temp, needNextPass = true;
+
+    // the actual sort mechanism looks at the current item
+    // and the next item, so start the outer loop at index 1
+    for (count = 1;count < len && needNextPass;count++) {
+
+        // the list might be sorted, so a next pass is not needed
+        needNextPass = false;
+
+        // how far the inner loop goes up the list is limited by the
+        // updated count of the outer loop, because after each pass,
+        // the sort mechanism has bubbled an item to the top
+        for (position = 0;position < len - count;position++) {
+
+            // if an item is greater than the item after it,
+            // the two items need to be swapped in position
+            if (list[position] > list[position + 1]) {
+
+                // need a temp item, otherwise list[position] would
+                // be overwritten and we need it to set list[position + 1]
+                temp = list[position];
+                list[position] = list[position + 1];
+                list[position + 1] = temp;
+
+                // if a swap was made, then we might need more swaps,
+                // to get the item bubbled further up the list.
+                // Only when no swap is performed in this inner loop
+                // do we know the list is fully sorted, and no next
+                // pass is needed
+                needNextPass = true;
+            }
+        }
+    }
+}
+
+console.log(fruits);
+bubbleSort(fruits);
+console.log(fruits);
