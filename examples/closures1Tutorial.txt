@@ -1,0 +1,92 @@
+Closures in JavaScript are a topic that confuse many. But in a way its pretty simple. When a closure is involved, variables that seem like they should disappear as they go out of scope in fact still exist and are accessible.
+Let's look at an often seen closure example, involving anonymous functions created in a loop, with unexpected results.<br /><br />
+Before this code is discussed, try to determine what will be output to console when the code is executed.<br /><br />
+
+<pre>function buildFunctions () {
+    var arr = [];
+
+    for (var idx = 0;idx < 3;idx++) {
+        arr.push(
+            function () {
+                console.log(idx);
+            }
+        );
+    }
+    return arr;
+}
+
+var fs = buildFunctions();
+
+fs[0]();    
+fs[1]();    
+fs[2]();  
+</pre><br />
+
+buildFunctions() returns an array of three anonymous functions. Each of these functions logs the value of the loop index variable idx when that function was created.<br /><br />
+At first glance you might think the functions log the values 0, 1, 2, but in fact they all log the value 3. Why is that?<br /><br />
+
+Before that question is answered, a couple of more important questions need to be answered. How do these three anonymous functions have access to the loop index idx when they are not executed until after function buildFunctions() has returned? The scope of idx is local to buildFunctions(), so doesn't it cease to exist after buildFunctions() has returned?<br /><br />
+
+The answer to these two questions involve the topic of JavaScript closures. When a function contains an inner function that accesses variables defined in the outer function, JavaScript detects this, and keeps a hidden reference to such variables after the outer function has returned.<br /><br />
+
+So even after buildFunctions() has returned, there is a hidden reference to idx that the three anonymous functions in array fs can access.<br /><br />
+
+Back to the original question, when those three anonymous functions execute, why do they all log 3 and not 0, 1, 2?<br /><br />
+
+Well, those three anonymous functions have a reference to the same variable idx. And when the loop ends, and when buildFunctions() returns, idx has a value of 3.<br /><br />
+
+How can this strange situation be avoided? The answer can be found in another JavaScript topic, execution context. As seen in the following modified code, one solution is to use a helper function to create the anonymous functions.<br /><br />
+
+<pre>function createInner (x) {
+    return function () {
+        console.log(x);
+    };
+}
+function buildFunctions () {
+    var arr = [];
+
+    for (var idx = 0;idx < 3;idx++) {
+        arr.push(
+            createInner(idx)
+        );
+    }
+    return arr;
+}
+
+var fs = buildFunctions();
+
+fs[0]();    
+fs[1]();    
+fs[2]();    
+</pre><br />
+
+Why does this work, and why does this not result in the same problem? Each time createInner(idx) is called with each loop iteration, a new execution context is created, so x inside createInner() will effectively be recreated each time.<br /><br />
+
+Another way to avoid the original problem is with the following code.<br /><br />
+
+<pre>function buildFunctions () {
+    var arr = [];
+
+    for (var idx = 0;idx < 3;idx++) {
+        arr.push(
+            (function (x) {
+                return function () {
+                    console.log(x);
+                };
+            })(idx)
+        );
+    }
+    return arr;
+}
+
+var fs = buildFunctions();
+
+fs[0]();    
+fs[1]();    
+fs[2]();  
+</pre><br />
+
+This code is a bit more obscure but solves the problem in pretty much the same way. In this case, the key is the use of an IIFE (immediately invoked function expression). Wrapping a function in parenthesis and then following it with another set of parenthesis causes the function to be executed immediately. This too results in a new execution context, which again causes x to be effectively recreated each time.
+<br /><br />
+
+If at this point your eyes are glazing over and your conceptual, mental focus is wavering, just Google IIFE and play around with this code a bit, and it should become more clear.<br /><br />

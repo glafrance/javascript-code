@@ -27,33 +27,63 @@
     margin: 0;
 }
 
-a {
-    text-decoration: none;
+html {
+    overflow-y: scroll;
 }
 
-a:active, a:focus, a:hover {
+html, a {
+    font-family: arial, helvetica, sans-serif;
+    color: #767676;    
+}
+
+body {
+    padding: 1rem;
+}
+
+#left_column {
+    float: left;
+    width: 25%;
+}
+
+#right_column {
+    float: left;
+    width: 75%;
+}
+
+a, a:active, a:focus, a:hover {
     text-decoration: none;
     outline: none;
 }
 
-#home {
-    margin: 1rem 0 0 1rem;
-}
-
 #title {
     text-align: center;
-    margin: 0 0 4rem 0;
+    margin: 0 0 2rem 0;
 }
 
 #code-lists {
-    list-style-type: none;
+    padding-left: 1rem;
 }
 
-.left-column {
-    border-right: .1rem solid #999999;
+#code-lists li {
+    margin-bottom: .5rem;
 }
 
 #description, #task, #test_data, #show_solution, #solution {
+    margin-bottom: 1rem;
+}
+
+#show_solution {
+    display: block;
+    color: green;
+    font-weight: bold;
+}
+
+#challenge, #solution, #tutorial {
     display: none;
-    margin-bottom: 2rem;
+}
+
+pre {
+    background: #eeeeee;
+    padding: 1rem;
+    border-radius: .4rem;
 }

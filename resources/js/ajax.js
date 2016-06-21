@@ -24,12 +24,12 @@
 // Wrap the request call in an immediate function so the httpRequest
 // object will be unique for each call, otherwise it could have
 // wrong data values due to how closures work.
-function makeMetadataRequest (options) {
+function makeChallengeRequest (options) {
     (function(options) {
         var httpRequest = new XMLHttpRequest();
 
         if (!httpRequest) {
-            console.log('makeMetadataRequest - cannot create an XMLHTTP instance');
+            console.log('makeChallengeRequest - cannot create an XMLHTTP instance');
             return false;
         }
 
@@ -39,36 +39,6 @@ function makeMetadataRequest (options) {
 
         httpRequest.onreadystatechange = handleResponse;
         httpRequest.open('GET', 'examples/' + options.url + '.txt?pseudoParam=' + new Date().getTime());
-        httpRequest.setRequestHeader('Content-Type', 'application/json');
-        httpRequest.send();
-
-        function handleResponse() {
-            if (httpRequest.readyState === XMLHttpRequest.DONE) {
-                if (httpRequest.status === 200) {
-                    options.callback(JSON.parse(httpRequest.responseText));
-                } else {
-                    console.log('makeMetadataRequest - there was a problem with the request');
-                }
-            }
-        }
-    })(options);
-}
-
-function makeSolutionRequest (options) {
-    (function(options) {
-        var httpRequest = new XMLHttpRequest();
-
-        if (!httpRequest) {
-            console.log('makeSolutionRequest - cannot create an XMLHTTP instance');
-            return false;
-        }
-
-        if(!validOptions(options)) {
-            return false;
-        }
-
-        httpRequest.onreadystatechange = handleResponse;
-        httpRequest.open('GET', 'examples/' + options.url + 'Solution.txt?pseudoParam=' + new Date().getTime());
         httpRequest.setRequestHeader('Content-Type', 'text/plain');
         httpRequest.send();
 
@@ -77,7 +47,40 @@ function makeSolutionRequest (options) {
                 if (httpRequest.status === 200) {
                     options.callback(httpRequest.responseText);
                 } else {
-                    console.log('makeSolutionRequest - there was a problem with the request');
+                    console.log('makeChallengeRequest - there was a problem with the request');
+                }
+            }
+        }
+    })(options);
+}
+
+// Wrap the request call in an immediate function so the httpRequest
+// object will be unique for each call, otherwise it could have
+// wrong data values due to how closures work.
+function makeTutorialRequest (options) {
+    (function(options) {
+        var httpRequest = new XMLHttpRequest();
+
+        if (!httpRequest) {
+            console.log('makeTutorialRequest - cannot create an XMLHTTP instance');
+            return false;
+        }
+
+        if(!validOptions(options)) {
+            return false;
+        }
+
+        httpRequest.onreadystatechange = handleResponse;
+        httpRequest.open('GET', 'examples/' + options.url + 'Tutorial.txt?pseudoParam=' + new Date().getTime());
+        httpRequest.setRequestHeader('Content-Type', 'text/plain');
+        httpRequest.send();
+
+        function handleResponse() {
+            if (httpRequest.readyState === XMLHttpRequest.DONE) {
+                if (httpRequest.status === 200) {
+                    options.callback(httpRequest.responseText);
+                } else {
+                    console.log('makeTutorialRequest - there was a problem with the request');
                 }
             }
         }
@@ -98,4 +101,3 @@ function validOptions (options) {
     }
     return isValid;
 }
-

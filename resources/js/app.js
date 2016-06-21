@@ -24,35 +24,68 @@
 
 function showExample (id) {
     var data;
+    
+    document.getElementById('challenge').style.display = "none";
+    document.getElementById('solution').style.display = "none";
+    document.getElementById('tutorial').style.display = "none";
+    document.getElementById('show_solution').textContent = "Show Solution";
 
     if (id) {
-        makeMetadataRequest({
+        makeChallengeRequest({
             url: id,
-            callback: processMetadata
-        });
-        makeSolutionRequest({
-            url: id,
-            callback: processSolution
+            callback: processChallenge
         });
     } else {
         console.log('showExample - example id missing');
     }
 }
 
-function processMetadata (data) {
-    document.getElementById('description').textContent = data.description;
-    document.getElementById('description').style.display = "block";
-    document.getElementById('task').textContent = data.task;
-    document.getElementById('task').style.display = "block";
-    document.getElementById('test_data').textContent = data.test_data;
-    document.getElementById('test_data').style.display = "block";
-    document.getElementById('show_solution').style.display = "block";
-}
-
-function processSolution (data) {
-    document.getElementById('solution').textContent = data;
+function processChallenge (data) {
+    document.getElementById('description').textContent = getData(data, "DESC");
+    document.getElementById('task').textContent = getData(data, "TASK");
+    document.getElementById('test_data').textContent = getData(data, "DATA");
+    document.getElementById('challenge').style.display = "block";
+    document.getElementById('solution').textContent = getData(data, "SOLUTION");
 }
 
 function showSolution () {
-    document.getElementById('solution').style.display = "block";
+    var button = document.getElementById('show_solution');
+    if (button.textContent === "Show Solution") {
+        button.textContent = "Hide Solution";
+        document.getElementById('solution').style.display = "block";
+    } else {
+        button.textContent = "Show Solution";
+        document.getElementById('solution').style.display = "none";
+    }
+}
+
+function showTutorial (id) {
+    var data;
+    
+    document.getElementById('challenge').style.display = "none";
+    document.getElementById('solution').style.display = "none";
+
+    if (id) {
+        makeTutorialRequest({
+            url: id,
+            callback: processTutorial
+        });
+    } else {
+        console.log('showTutorial - example id missing');
+    }
+}
+
+function processTutorial (data) {
+    document.getElementById('tutorial').innerHTML = data;
+    document.getElementById('tutorial').style.display = "block";
+}
+
+function getData(data, key) {
+    var retVal;
+    var keyStart = data.indexOf(key + '$$$') + key.length + 3;
+    var keyEnd = data.indexOf('$$$' + key);
+    
+    retVal = data.substring(keyStart, keyEnd);
+    
+    return retVal;
 }
