@@ -1,0 +1,1 @@
+Inheritance in JavaScript is very different when compared to many other programming languages such as Java, C++, and even Python.<br /><br />

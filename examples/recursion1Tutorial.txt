@@ -1,0 +1,62 @@
+In recursion a function calls itself repeatedly to arrive at some end result. It is often seen as an alternative for iteration.<br /><br />
+
+Unlike many other programming languages, JavaScript does not compile to optimize recursion. For example, in some languages using tail call optimization, each successive cycle of a recursive function takes place immediately, instead of stacking up in memory.<br /><br />
+
+Take the following code for example. The two functions factorialLoop() and factorialRecursion() return the factorial of a number. The returned factorial is the result of multiplying the starting number by preceding integers until the number 1 is reached:<br /><br />
+
+factorial of 3:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3 x 2 x 1 = 6<br /><br />
+
+factorial of 6:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6 x 5 x 4 x 3 x 2 x 1 = 720<br /><br />
+
+<pre>function executionTime (func, arg) {
+    var starttime = new Date().getTime();
+    func(arg);
+    return (new Date().getTime() - starttime);
+}
+
+function factorialLoop (num) {
+    var result = 1;
+    
+    for (var x = num;x > 1;x--) {
+        result *= x;
+    }
+
+    return result;
+}
+
+function factorialRecursion (num) {
+    if (num <= 0) {
+        return 1;
+    } else {
+        return num * factorialRecursion(num - 1);
+    }
+}
+
+var start = 1, end = 10000, step = 1;
+var loopTime = 0, recursionTime = 0;
+
+for (z = start;z <= end;z += step) {
+    loopTime += executionTime(factorialLoop, z);
+}
+for (z = start;z <= end;z += step) {
+    recursionTime += executionTime(factorialRecursion, z);
+}
+
+console.log(loopTime);
+console.log(recursionTime);
+</pre><br />
+
+To benchmark the execution time of the loop and recursive functions we execute each of them with the same inputs 1000 times. Repeatedly executing this code gives different results, but on average the recursive version takes 4 - 6 times as long as the loop version on my machine.  If you increase the end value to 20000 the recursive version seems to take up to 10 times longer. (be careful, because even at 20000 your browser make appear to cycle endlessly).<br /><br />
+
+Now execute the code with these values:<br /><br />
+
+start = 10000, end = 100000, step = 100<br /><br />
+
+On my machine the console returns an error:<br /><br />
+
+Uncaught RangeError: Maximum call stack size exceeded<br /><br />
+
+In many cases recursion may be inefficient but will not result in stack size errors. And recursion often results on more elegant and understandable code.<br /><br />
+
+The important thing is to consider the situation and likely execution scenarios to decide if recursion is an option.
+<br /><br />
