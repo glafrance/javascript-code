@@ -65,6 +65,7 @@ a, a:active, a:focus, a:hover {
 }
 
 #code-lists li {
+    font-size: 1rem;
     margin-bottom: .5rem;
 }
 
