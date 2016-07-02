@@ -21,70 +21,37 @@
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  SOFTWARE.
  */
-// Wrap the request call in an immediate function so the httpRequest
-// object will be unique for each call, otherwise it could have
-// wrong data values due to how closures work.
-function makeChallengeRequest (options) {
-    (function(options) {
-        var httpRequest = new XMLHttpRequest();
-
-        if (!httpRequest) {
-            console.log('makeChallengeRequest - cannot create an XMLHTTP instance');
-            return false;
-        }
-
-        if(!validOptions(options)) {
-            return false;
-        }
-
-        httpRequest.onreadystatechange = handleResponse;
-        httpRequest.open('GET', 'examples/' + options.url + '.txt?pseudoParam=' + new Date().getTime());
-        httpRequest.setRequestHeader('Content-Type', 'text/plain');
-        httpRequest.send();
-
-        function handleResponse() {
-            if (httpRequest.readyState === XMLHttpRequest.DONE) {
-                if (httpRequest.status === 200) {
-                    options.callback(httpRequest.responseText);
-                } else {
-                    console.log('makeChallengeRequest - there was a problem with the request');
-                }
-            }
-        }
-    })(options);
-}
 
 // Wrap the request call in an immediate function so the httpRequest
 // object will be unique for each call, otherwise it could have
 // wrong data values due to how closures work.
-function makeTutorialRequest (options) {
-    (function(options) {
-        var httpRequest = new XMLHttpRequest();
+function makePageRequest (options) {
+  (function(options) {
+    var httpRequest = new XMLHttpRequest();
 
-        if (!httpRequest) {
-            console.log('makeTutorialRequest - cannot create an XMLHTTP instance');
-            return false;
+    if (!httpRequest) {
+      console.log('makePageRequest - cannot create an XMLHTTP instance');
+      return false;
+    }
+
+    if(!validOptions(options)) {
+      return false;
+    }
+
+    httpRequest.onreadystatechange = function () {
+      if (httpRequest.readyState === XMLHttpRequest.DONE) {
+        if (httpRequest.status === 200) {
+          options.callback(httpRequest.responseText, options["solutionId"]);
+        } else {
+          console.log('makePageRequest - there was a problem with the request');
         }
+      }
+    };
 
-        if(!validOptions(options)) {
-            return false;
-        }
-
-        httpRequest.onreadystatechange = handleResponse;
-        httpRequest.open('GET', 'examples/' + options.url + 'Tutorial.txt?pseudoParam=' + new Date().getTime());
-        httpRequest.setRequestHeader('Content-Type', 'text/plain');
-        httpRequest.send();
-
-        function handleResponse() {
-            if (httpRequest.readyState === XMLHttpRequest.DONE) {
-                if (httpRequest.status === 200) {
-                    options.callback(httpRequest.responseText);
-                } else {
-                    console.log('makeTutorialRequest - there was a problem with the request');
-                }
-            }
-        }
-    })(options);
+    httpRequest.open('GET', 'examples/' + options.url + '?pseudoParam=' + new Date().getTime());
+    httpRequest.setRequestHeader('Content-Type', options.contentType || 'text/plain');
+    httpRequest.send();
+  })(options)
 }
 
 function validOptions (options) {

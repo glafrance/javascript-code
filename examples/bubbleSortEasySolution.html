@@ -1,8 +1,4 @@
-DESC$$$Bubble sort is a simple sorting algorithm that repeatedly steps through a list of items to be sorted. It compares each pair of adjacent items and swaps them if they are in the wrong order. The pass through the list is repeated until no swaps are needed, which indicates that the list is sorted. This comparison sort algorithm is named for the way smaller elements 'bubble' to the top of the list.
-$$$DESC
-TASK$$$Challenge - create a function that takes an array as a parameter and performs a bubble sort to sort the following array of fruits in alphabetical order:$$$TASK
-DATA$$$[ 'grape', 'banana', 'apple', 'orange', 'apricot', 'kiwi', 'strawberry ']$$$DATA
-SOLUTION$$$var fruits = [ 'grape', 'banana', 'apple', 'orange', 'apricot', 'kiwi', 'strawberry '];
+<pre>var fruits = [ 'grape', 'banana', 'apple', 'orange', 'apricot', 'kiwi', 'strawberry '];
 
 function bubbleSort (list) {
     var count, position, len = list.length, temp, needNextPass = true;
@@ -42,4 +38,5 @@ function bubbleSort (list) {
 
 console.log(fruits);
 bubbleSort(fruits);
-console.log(fruits);$$$SOLUTION
+console.log(fruits);
+</pre>

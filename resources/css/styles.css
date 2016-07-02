@@ -23,68 +23,136 @@
  */
 
 * {
-    padding: 0;
-    margin: 0;
+  padding: 0;
+  margin: 0;
 }
 
 html {
-    overflow-y: scroll;
+  overflow-y: scroll;
 }
 
 html, a {
-    font-family: arial, helvetica, sans-serif;
-    color: #767676;    
+  font-family: arial, helvetica, sans-serif;
+  color: #767676;    
 }
 
 body {
-    padding: 1rem;
+  padding: .5rem;
 }
 
-#left_column {
-    float: left;
-    width: 25%;
+.home {
+  padding: .5rem;
 }
 
-#right_column {
-    float: left;
-    width: 75%;
+#left-column {
+  float: left;
+  width: 25%;
+}
+
+#right-column {
+  float: left;
+  width: 75%;
 }
 
 a, a:active, a:focus, a:hover {
-    text-decoration: none;
-    outline: none;
+  text-decoration: none;
+  outline: none;
 }
 
-#title {
-    text-align: center;
-    margin: 0 0 2rem 0;
+#main-header-title {
+  text-align: center;
+  margin: 0 0 2rem 0;
 }
 
-#code-lists {
-    padding-left: 1rem;
+#main-header-title-short {
+  text-align: center;
+  display: none;
 }
 
-#code-lists li {
-    font-size: 1rem;
-    margin-bottom: .5rem;
+#page-list {
+  padding-left: 1rem;
+  margin-right: 1rem;
+  list-style-type: none;
 }
 
-#description, #task, #test_data, #show_solution, #solution {
-    margin-bottom: 1rem;
+#page-list li {
+  font-size: 1rem;
+  margin-bottom: 2rem;
 }
 
-#show_solution {
-    display: block;
-    color: green;
-    font-weight: bold;
+#challenge-content, #show-solution, #solution {
+  margin-bottom: 1rem;
 }
 
-#challenge, #solution, #tutorial {
-    display: none;
+#show-solution {
+  display: block;
+  color: green;
+  font-weight: bold;
+}
+
+#challenge-content, #solution, #show-solution, #tutorial-content {
+  display: none;
 }
 
 pre {
-    background: #eeeeee;
-    padding: 1rem;
-    border-radius: .4rem;
+  background: #eeeeee;
+  padding: 1rem;
+  border-radius: .4rem;
+  
+  white-space: pre-wrap;       /* Since CSS 2.1 */
+  white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+  white-space: -pre-wrap;      /* Opera 4-6 */
+  white-space: -o-pre-wrap;    /* Opera 7 */
+  word-wrap: break-word;       /* Internet Explorer 5.5+ */
+}
+
+/*********************************************/
+@media all  and (max-width: 600px) {
+  html {
+    overflow-y: auto;
+  }
+
+  body {
+    padding: 0;
+  }
+  
+  .home {
+    font-size: .8rem;
+  }
+  
+  #main-header {
+    padding-bottom: .5rem;
+  }
+
+  #main-header-title {
+    display: none;
+  }
+
+  #main-header-title-short {
+    display: block;
+    font-size: .8rem;
+    margin-bottom: 1rem;
+  }
+
+  #left-column {
+    clear: left;
+    width: 100%;
+    text-align: center;
+  }
+
+  #right-column {
+    clear: left;
+    width: 100%;
+  }
+  
+  #page-list li {
+    font-size: .8rem;
+    margin-bottom: .8rem;
+  }
+  
+  #challenge-content, #show-solution, #solution, #tutorial-content {
+    font-size: .8rem;
+    padding: .2rem;
+  }
+
 }

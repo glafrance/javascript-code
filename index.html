@@ -24,34 +24,35 @@ SOFTWARE.
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="utf-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Paragonica - JavaScript and Web Development Examples, Tutorials, Challenges</title>
     <link href="resources/css/styles.css" type="text/css" rel="stylesheet" />
     <script src="resources/js/ajax.js"></script>
     <script src="resources/js/app.js"></script>
 </head>
 <body>
-    <div id="header">
-        <p id="home"><a href="index.html">Home</a></p>
-        <h3 id="title">Paragonica JavaScript and Web Development<br />Examples, Tutorials, and Challenges</h3>
+    <div id="main-header">
+        <p class="home"><a href="index.html">Home</a></p>
+        <h3 id="main-header-title">Paragonica JavaScript and Web Development<br />Examples, Tutorials, and Challenges</h3>
+        <h3 id="main-header-title-short">Examples, Tutorials, and Challenges</h3>
     </div>
 
-    <div id="left_column">
-        <ul id="code-lists">
-            <li><a href="#" onclick="showExample('bubbleSortEasy');return false;">bubble sort challenge - easier</a></li>
-            <li><a href="#" onclick="showTutorial('closures1');return false;">closures tutorial - one</a></li>
-            <li><a href="#" onclick="showTutorial('recursion1');return false;">recursion tutorial - one</a></li>
-            <!--<li><a href="#" onclick="showTutorial('inheritance1');return false;">inheritance - one</a></li>-->
+    <div id="left-column">
+        <ul id="page-list">
+            <li><a href="#" onclick="showPage('bubbleSortEasy.html', 'bubbleSortEasySolution.html');return false;">bubble sort challenge - easier</a></li>
+            <li><a href="#" onclick="showPage('closures1Tutorial.html');return false;">closures tutorial - one</a></li>
+            <li><a href="#" onclick="showPage('recursion1Tutorial.html');return false;">recursion tutorial - one</a></li>
+            <!--<li><a href="#" onclick="showPage('inheritance1');return false;">inheritance - one</a></li>-->
         </ul>
     </div>
-    <div id="right_column">
+    <div id="right-column">
         <div id="challenge">
-            <div id="description"></div>
-            <div id="task"></div>
-            <div id="test_data"></div>
-            <a id="show_solution" href="#" onclick="showSolution();return false;">Show Solution</a>
-            <div><pre id="solution"></pre></div>
+            <div id="challenge-content"></div>
+            <a id="show-solution" href="#" onclick="showSolution();return false;">Show Solution</a>
+            <div id="solution"></div>
         </div>
-        <div id="tutorial"></div>
+        <div id="tutorial-content"></div>
     </div>
 </body>
 </html>
