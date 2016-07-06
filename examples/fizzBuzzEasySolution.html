@@ -1,0 +1,47 @@
+<pre>
+Here is one possible solution to the problem:
+
+function fizzBuzz () {
+  var output = '';
+
+  for (var idx = 1;idx <=100;idx++) {
+    if (idx % 3 === 0 && idx % 5 === 0) {
+      output += ' FizzBuzz ';
+    } else if (idx % 3 === 0) {
+      output += ' Fizz ';
+    } else if (idx % 5 === 0) {
+      output += ' Buzz ';
+    } else {
+      output += ' ' + idx + ' ';
+    }
+  }
+
+  console.log(output);
+};
+
+fizzBuzz();
+
+And here is a more efficient solution (requires only one check):
+
+function fizzBuzz () {
+  var output = '';
+
+  for (var idx = 1;idx <=100;idx++) {
+    if (idx % 15 === 0) {
+      output += ' FizzBuzz ';
+    } else if (idx % 3 === 0) {
+      output += ' Fizz ';
+    } else if (idx % 5 === 0) {
+      output += ' Buzz ';
+    } else {
+      output += ' ' + idx + ' ';
+    }
+  }
+
+  console.log(output);
+};
+
+fizzBuzz();
+
+There are many ways to solve the FizzBuzz problem, but the above examples are two commonly seen simple solutions.
+</pre>
