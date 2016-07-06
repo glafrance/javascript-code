@@ -31,7 +31,7 @@ html {
   overflow-y: scroll;
 }
 
-html, a {
+html, a, select {
   font-family: arial, helvetica, sans-serif;
   color: #767676;    
 }
@@ -69,6 +69,10 @@ a, a:active, a:focus, a:hover {
 
 .header-links {
   display: inline;
+}
+
+.other-sites {
+  padding: .1rem;
 }
 
 #main-header-title {

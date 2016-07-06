@@ -23,7 +23,12 @@ SOFTWARE.
 */
 
 function init() {
-  document.getElementById('otherSitesSelect').onchange = function (event) {
+  otherSitesListener();
+}
+
+
+function otherSitesListener () {
+  document.getElementById('paragonicaOtherSitesSelect').onchange = function (event) {
     var url = '';
     
     switch(event.target.value) {
@@ -41,7 +46,7 @@ function init() {
       window.open(url, '_blank');
     }
     event.target.value = 'other Paragonica sites';
-  };
+  };  
 }
 
 function showPage (id, solutionId) {
