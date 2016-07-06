@@ -1,1 +1,187 @@
 Inheritance in JavaScript is very different when compared to many other programming languages such as Java, C++, and even Python.<br /><br />
+
+In fact, there are many ways to accomplish inheritance in JavaScript, and some are quite messy. These various JavaScript inheritance methodologies usually attempt to replicate some aspect of inheritance found in other languages.<br /><br />
+
+In this tutorial, you will see one of the more common JavaScript inheritance patterns, involving the "new" keyword.<br /><br />
+
+Imagine you are creating an application to draw various shapes, such as circles, rectangles, triangles, etc. In your inheritance scheme there might be a "base class" Shape. Note that JavaScript does not have true classes (not even with ES6, which introduces the "class" keyword as mere syntactic sugar).<br /><br />
+
+<pre>
+function Shape (w, h, c) {
+  this.width = w;
+  this.height = h;
+  this.color = c;
+}
+
+Shape.prototype.getWidth = function () {
+  return this.width;
+};
+
+Shape.prototype.getHeight = function () {
+  return this.height;
+};
+
+Shape.prototype.getColor = function () {
+  return this.color;
+};
+
+Shape.prototype.setWidth = function (w) {
+  this.width = w;
+};
+
+Shape.prototype.setHeight = function (h) {
+  this.height = h;
+};
+
+Shape.prototype.setColor = function (c) {
+  this.color = c;
+};
+
+var s1 = new Shape(10, 10, "ff0000");
+console.log("Shape properties: width", s1.getWidth(), ", height", s1.getHeight(), ", color", s1.getColor());
+
+// Shape properties: width 10 , height 10 , color ff0000
+
+s1.setWidth(400);
+s1.setHeight(200);
+s1.setColor("cccccc");
+
+console.log("Shape properties: width", s1.getWidth(), ", height", s1.getHeight(), ", color", s1.getColor());
+
+// Shape properties: width 400 , height 200 , color cccccc
+</pre><br />
+
+First a constructor function is defined:<br /><br />
+
+<pre>
+function Shape (w, h, c) {
+  this.width = w;
+  this.height = h;
+  this.color = c;
+}
+</pre><br />
+
+The constructor is used to create new objects of this "class" using the "new" keyword. When "new" is used in calling the constructor, an empty object is created and "this" within the constructor function (Shape) is that new object. That object is returned automatically from the constructor.<br /><br />
+
+Notice how the "methods" getWidth(), getHeight(), getColor() as well as their companion setter functions are added to the prototype after the constructor function has been defined:<br /><br />
+
+<pre>
+Shape.prototype.getWidth = function () {
+  return this.width;
+};
+</pre><br />
+
+Within the constructor function the width, height, and color properties will have distinct, unique values for each created shape (instance properties). But because getWidth(), getHeight(), etc. are defined on the prototype, they are automatically available to all shape objects created with the constructor function.<br /><br />
+
+You could have added these methods inside the constructor function:<br /><br />
+
+<pre>
+function Shape (w, h, c) {
+  this.width = w;
+  this.height = h;
+  this.color = c;
+  
+  this.getWidth = function () {
+    return this.width;
+  }
+  
+  ... other getters and setters defined
+}
+</pre><br />
+
+But then each shape object would have a copy of these methods in memory, when they do the exact same thing. This is why they are defined on the prototype.<br /><br />
+
+For the inheritance scheme presented in this tutorial, instance properties (unique to each shape) are defined in the constructor function, and instance methods (shared by all instances) are defined on the prototype.<br /><br />
+
+It should be noted that the methods getWidth(), setHeight(), etc. are not really necessary. You could do the following to change and access the property values:<br /><br />
+
+<pre>
+s1.width = 400;
+s1.height = 200;
+s1.color = "cccccc";
+
+console.log("Shape properties: width", s1.width, ", height", s1.height, ", color", s1.color);
+</pre><br />
+
+These methods on the prototype were added for those of you desiring to mimic object oriented programming patterns typical to programming languages such as Java, C++, etc.<br /><br />
+
+Now let's create a "child class".<br /><br />
+
+<pre>
+function Square (w, h, c) {
+  this.width = w;
+  this.height = h;
+  this.color = c;
+}
+
+Square.prototype = new Shape();
+
+Square.prototype.describe = function () {
+  console.log("I am a square.");
+};
+
+var square1 = new Square(50, 75, "0000ff");
+
+square1.describe();
+
+// I am a square.
+
+console.log("Square properties: width", square1.getWidth(), ", height", square1.getHeight(), ", color", square1.getColor());
+
+// Square properties: width 50 , height 75 , color 0000ff
+
+square1.setWidth(350);
+square1.setHeight(150);
+square1.setColor("ff3333");
+
+console.log("Square properties: width", square1.getWidth(), ", height", square1.getHeight(), ", color", square1.getColor());
+
+// Square properties: width 350 , height 150 , color ff3333
+</pre><br />
+
+Note that in the Square constructor function it is also necessary to set the initial values of width, height, and color. JavaScript does not have the concept of super(width, height, color) as in some other programming languages.<br /><br />
+
+This line of code makes Square inherit from Shape:<br /><br />
+
+<pre>
+Square.prototype = new Shape();
+</pre><br />
+
+Note that you don't just set the Square prototype to the Shape function, you must call the Shape constructor with "new". This effectively sets the Square prototype to an instance of Shape.<br /><br />
+
+After defining the Square constructor we have defined a new method describe() on the Square prototype. describe() will be available to instances of the Square class but will not be available to instances of the Shape class. It is a method unique to the child class.<br /><br />
+
+One problem with this type of JavaScript inheritance occurs when the constructor function is called without the "new" keyword. In this situation "this" inside the constructor is the global object, so width, height, and color become global variables. Also, the constructor function will not automatically return an object, so the variable created with the constructor (s2 below) will be undefined.<br /><br />
+
+<pre>
+var s2 = Shape();   // no "new" keyword, so s2 is undefined and width, height, color are global properties
+</pre><br />
+
+To avoid this and ensure that even if the "new" keyword is omitted a proper Shape or Square object is created and returned, modify their constructors:<br /><br />
+
+<pre>
+function Shape (w, h, c) {
+  if (!(this instanceof Shape)) {
+      return new Shape(w, h, c);
+  }
+
+  this.width = w;
+  this.height = h;
+  this.color = c;
+}
+
+...
+
+function Square (w, h, c) {
+  if (!(this instanceof Square)) {
+      return new Square(w, h, c);
+  }
+  this.width = w;
+  this.height = h;
+  this.color = c;
+}
+</pre><br />
+
+This code checks "this" and if it is not the target class calls the constructor function with the "new" keyword.<br /><br />
+
+As mentioned at the beginning of this tutorial, inheritance is different in JavaScript, and can become quite messy depending on your requirements and objectives. The above discussion and code presents one way to achieve some degree of inheritance in JavaScript.<br /><br />
