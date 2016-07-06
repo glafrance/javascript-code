@@ -22,6 +22,28 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
+function init() {
+  document.getElementById('otherSitesSelect').onchange = function (event) {
+    var url = '';
+    
+    switch(event.target.value) {
+      case 'japanese':
+        url = 'http://www.paragonica.com/japanese/index.html';
+        break;
+      case 'dashboard':
+        url = 'http://www.paragonica.com/dashboard';
+        break;
+      case 'flight':
+        url = 'http://www.paragonica.com/flightSimulator';
+        break;
+    }
+    if (url) {
+      window.open(url, '_blank');
+    }
+    event.target.value = 'other Paragonica sites';
+  };
+}
+
 function showPage (id, solutionId) {
   var data, callback = this.processPage;
 
