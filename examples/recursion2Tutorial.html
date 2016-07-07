@@ -1,0 +1,297 @@
+In recursion a function calls itself repeatedly to arrive at some end result. It is often seen as an alternative for iteration.<br /><br />
+
+This tutorial presents examples of recursion to solve problems of moderate difficulty. If you need a more basic refresher on recursion see our <a class="obviousLink" href="#" onclick="showPage('recursion1Tutorial.html');return false;">"easy" recursion tutorial</a>.<br /><br />
+  
+The first problem we will look at involves writing a function to reverse a string. So given an input string of "foobar" the function would return "raboof". Before looking at the solution and its analysis below, try to solve the problem and write the reverseString(inputStr) function.<br /><br />
+
+Here is one solution for this problem:<br /><br />
+
+<pre>
+function reverseString (input) {
+  if (input.length <= 1) {
+    return input;
+  }
+
+  return reverseString(input.substr(1)) + input[0];
+}
+
+console.log(reverseString("foobar"));
+
+// raboof
+</pre><br />
+
+The key to understanding this solution, and recursion in general, is to recognize the execution pattern in play here. I'll try to present it in a visual manner, as that is generally easier to understand.<br /><br />
+
+reverseString("foobar")<br />
+-> return reverseString("oobar") + "f"<br />
+--> return reverseString("obar") + "o"<br />
+---> return reverseString("bar") + "o"<br />
+----> return reverseString("ar") + "b"<br />
+-----> return reverseString("r") + "a"<br />
+------> return "r" // input.length <= 1 so just return input (r)<br /><br />
+
+If you're like me, the above visual representation helps a little, but not much. So let's do better by combining discussion with visualization.<br /><br />
+
+When we first enter reverseString("foobar"),<br /><br /> 
+
+<pre>input.length <= 1</pre><br />
+
+is false, so we execute: <br /><br />
+
+<pre>return reverseString("oobar") + "f"</pre><br />
+
+Here is where we need to stretch our visual brains and keep track on what's going on. At this point we're kind of saying this:<br /><br /> 
+
+<pre>
+"The final return value will be whatever gets returned from reverseString("oobar") + "f"
+</pre><br />
+
+What will be returned from<br /><br />
+
+<pre>
+reverseString("oobar") + "f"
+</pre><br />
+
+is this:<br /><br />
+
+<pre>
+reverseString("obar") + "o" + "f"
+</pre><br />
+
+and viewed throughout the execution cycle:<br /><br />
+
+<pre>
+return reverseString("oobar") + "f"
+return reverseString("obar") + "o" + "f"
+return reverseString("bar") + "o" + "o" + "f"
+return reverseString("ar") + "b" + "o" + "o" + "f"
+return reverseString("r") + "a" + "b" + "o" + "o" + "f"
+return "r" + "a" + "b" + "o" + "o" + "f"
+</pre><br />
+
+Another way to visualize this is to consider the function again:<br /><br />
+
+<pre>
+function reverseString (input) {
+  if (input.length <= 1) {
+    return input;
+  }
+
+  return reverseString(input.substr(1)) + input[0];
+}
+</pre><br />
+
+and each time this function is executed recursively, we're kind of saying:<br /><br />
+
+<pre>
+input.length is greater than 1, let's get ready to return something, but I'm not done yet, I still have something to do.
+</pre><br />
+
+This is where we need to visualize recursion as a stacking of return values.<br /><br />
+
+We also need to recognize the basic structure of many recursive programs:<br /><br />
+
+<pre>
+function reverseString (input) {
+  if (input.length <= 1) { // ***** CHECK FOR AN END CONDITION *****
+    return input;
+  }
+
+  return reverseString(input.substr(1)) + input[0]; // ***** NOT DONE YET, CONTINUE RECURSION *****
+}
+</pre><br />
+
+With that in mind, lets consider another problem involving recursion. Create a function map(array, function). Our "map" function takes two arguments, an array of input values, and a function to execute on each of the input values. Our "map" function returns a new array whose contents are the input values processed by the function argument.<br /><br />
+
+So if called like this:<br /><br />
+
+<pre>
+map(['a', 'b', 'c'], function (letter) {
+  return letter.toUpperCase();
+});
+</pre><br />
+
+The returned array would be:<br /><br />
+
+<pre>
+['A', 'B', 'C']
+</pre><br />
+
+Try to solve this yourself, considering the previous example and its analysis, and then go over the below solution and analysis.<br /><br />
+
+Rather than give you the solution and then analyze it, I'm going to start by analyzing the problem largely based on the previous discussion, and see if that leads us to the solution.<br /><br />
+
+<pre>
+function map(inputArray, inputFunction) {
+  // how do I solve this using recursion?
+}
+</pre><br />
+
+To start, I should mention that we are not asking the question, "is this a problem that requires recursion, rather than perhaps iteration?" We're not asking this question because often using recursion or iteration is a matter of preference, or the dataset or early testing will point to one or the other approach, and this tutorial is about recursion, so there. <br /><br />
+
+So we know we will repeat a smaller task to accomplish the larger, overall mission. We also know we need to CHECK FOR AN END CONDITION, and if NOT DONE YET, then CONTINUE RECURSION.<br /><br />
+
+<pre>
+function map(inputArray, inputFunction) {
+  IF NOT END CONDITION
+    return SOMETHING;
+  
+  return SOMETHING + SOMETHING ELSE ???
+}
+</pre><br />
+
+Hold it. Let's consider what map() is trying to do here.<br /><br />
+
+<pre>
+- execute the input function FOR EACH item in the input array
+- return an array with the results
+</pre><br /> 
+
+So what's the end condition? In the previous example it was<br /><br /> 
+
+<pre>
+if (input.length <= 1)
+</pre><br />
+
+Since the input is an array, maybe we will operate on a subset of the input array until that subset has only one item?<br /><br />
+
+<pre>
+function map(inputArray, inputFunction) {
+  if (inputArray.length <= 1)    
+    return SOMETHING;  // END CONDITION REACHED
+  
+  return SOMETHING + SOMETHING ELSE ??? // NOT END CONDITION
+}
+</pre><br />
+
+Okay, we're making progress, we have our end condition. So next, what do we need to do (the SOMETHING and the SOMETHING ELSE)?<br /><br />
+
+Well, map() will allow us to execute an input function for each input array item, so if the end condition has been reached we should probably execute the input function on the one remaining element.<br /><br />
+
+<pre>
+function map(inputArray, inputFunction) {
+  if (inputArray.length <= 1) {   
+    return [inputFunction(inputArray[0])];
+  }
+  
+  return SOMETHING + SOMETHING ELSE ??? // NOT END CONDITION
+}
+</pre><br />
+
+Notice I'm wrapping the return value in an array, because we know the return value will be an array, where each item in the input array has the input function applied to it.<br /><br />
+
+So what should we do when the end condition has not been reached? In the previous recursion example this is what we did:<br /><br />
+
+<pre>
+return reverseString(input.substr(1)) + input[0];
+</pre><br />
+
+So maybe we should do something like this:<br /><br />
+
+<pre>
+return RECURSIVE CALL + FIRST INPUT;
+</pre><br />
+
+Let's give this a try:<br /><br />
+
+<pre>
+function map(inputArray, inputFunction) {
+  if (inputArray.length <= 1) {   
+    return [inputFunction(inputArray[0])];
+  }
+  
+  return map(inputArray.slice(1), inputFunction) + inputArray[0];
+}
+</pre><br />
+
+To execute this we need an input array and the input function (could be anonymous function but would be harder to read). So here is the complete test code so far:<br /><br />
+
+<pre>
+function convertToUpper (inputStr) {
+  return inputStr.toUpperCase();
+}
+
+var arr = ['a', 'b', 'c'];
+
+console.log(arr);
+
+function map(inputArray, inputFunction) {
+  if (inputArray.length <= 1) {   
+    return [inputFunction(inputArray[0])];
+  }
+
+  return map(inputArray.slice(1), inputFunction) + inputArray[0];
+}
+
+var resultArr = map(arr, convertToUpper);
+
+console.log(resultArr);
+</pre><br />
+
+This is the result I get, which tells me we're making progress, but its not working quite right. The c has been converted to uppercase C, but the a and b are unchanged, and the final result is not an array. Also the order of the inputs is reversed. What's going on?<br /><br />
+
+<pre>
+["a", "b", "c"]
+Cba
+</pre><br />
+
+Well, we modeled our solution on the previous recursion example, whose purpose was to reverse a string, so this might help:<br /><br />
+
+<pre>
+function map(inputArray, inputFunction) {
+  if (inputArray.length <= 1) {    
+    return [inputFunction(inputArray[0])];
+  }
+
+  return inputArray[0] + map(inputArray.slice(1), inputFunction);
+}
+</pre><br />
+
+Now I get this:<br /><br />
+
+<pre>
+["a", "b", "c"]
+abC
+</pre><br />
+
+But only the last item is converted to uppercase, so let's try this:<br /><br />
+
+<pre>
+function map(inputArray, inputFunction) {
+  if (inputArray.length <= 1) {   
+    return [inputFunction(inputArray[0])];
+  }
+
+  return inputFunction(inputArray[0]) + map(inputArray.slice(1), inputFunction);
+}
+</pre><br />
+
+Now I get this:<br /><br />
+
+<pre>
+["a", "b", "c"]
+ABC
+</pre><br />
+
+Progress! But the result is not in an array. To save time, I'm just going to give you the final answer:<br /><br />
+
+<pre>
+function map(inputArray, inputFunction) {
+  if (inputArray.length <= 1) {   
+    return [inputFunction(inputArray[0])];
+  }
+
+  return [inputFunction(inputArray[0])].concat(map(inputArray.slice(1), inputFunction));
+}
+</pre><br />
+
+Excellent, our output is just what we need:<br /><br />
+
+<pre>
+["a", "b", "c"]
+["A", "B", "C"]
+</pre><br />
+
+To explain, we need to return an array, so anytime we return something, whatever we are operating on must be wrapped in an array. And because the recursive call adds one result to another, we use the concat() method, because that is the method used to add arrays.<br /><br />
+
+I certainly hope the detailed discussion in this tutorial was helpful, and I hope the level of detail did not amount to overkill.<br /><br />
