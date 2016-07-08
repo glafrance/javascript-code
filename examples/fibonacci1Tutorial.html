@@ -1,0 +1,160 @@
+Fibonacci is a popular coding problem given to programming job candidates. The Fibonacci series is 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, ...<br /><br />
+
+Once you get beyond the first three numbers in the Fibonacci sequence (0, 1, 1), subsequent numbers are the sum of the two previous numbers, so the 4th Fibonacci, 2 is the sum of 1 and 1, the 5th Fibonacci, 3 is the sum of 2 and 1, 5 = 3 + 2, 8 = 5 + 3, etc.<br /><br />
+
+There are two coding problems related to the Fibonacci series you might be asked to solve. The first is to return the Nth number in the series, for example the 5th number in the series is 3 and the 10th number in the series is 34.<br /><br />
+
+
+The second coding problem is to return an array containing the first N numbers in the Fibonacci series, for example an array of the first 10 numbers in the series is<br /><br />
+
+<pre>
+[0 1 1 2 3 5 8 13 21 34]
+</pre><br />
+
+See if you can solve the first problem before looking at the solution below, by writing a recursive function fibonacciRecursive(n) returning the Nth number in the series. Note that for larger test values of n this recursive version may freeze your browser.<br /><br />
+
+Here is one possible solution to this first problem using recursion:<br /><br />
+
+<pre>
+function fibonacciRecursive (n) {
+  if (n === 1) {
+    return 0;
+  }
+  if (n < 4) {
+    return 1;
+  }
+  return (fibonacciRecursive(n - 1) + fibonacciRecursive(n - 2))
+}
+</pre><br />
+
+If you do try running this solution for an n value of 100 or 1000, there is a good chance your browser will freeze, because for this type of problem recursion is very inefficient. So try to write a non-recursive version, using iteration. Here is one solution:<br /><br />
+
+<pre>
+function fibonacciIterative (n) {
+  if (n === 1) {
+    return 0;
+  }
+
+  if (n === 2 || n === 3) {
+    return 1;
+  }
+
+  var int1 = 1, int2 = 1, fib = 0;
+
+  for (var i = 1;i <= n-3;i++) {
+    fib = int1 + int2;
+
+    int2 = int1;
+    int1 = fib;
+  }
+
+  return fib;
+}
+</pre><br />
+
+Now solve the second problem, writing a function getFibonacci(n) returning an array with the first N numbers in the Fibonacci series. Hint - use the non-recursive function fibonacciIterative(n) inside this new function.<br /><br />
+
+Here is one possible solution to this problem:<br /><br />
+
+<pre>
+function getFibonacci (n) {
+  var nums = [];
+
+  for (var x = 1;x <= n;x++) {
+    nums.push(fibonacciIterative(x));
+  }
+
+  return nums;
+}
+</pre><br />
+
+And here is the complete code with test input and output:<br /><br />
+
+<pre>
+function fibonacciRecursive (n) {
+  if (n === 1) {
+    return 0;
+  }
+  if (n < 4) {
+    return 1;
+  }
+  return (fibonacciRecursive(n - 1) + fibonacciRecursive(n - 2))
+}
+
+function fibonacciIterative (n) {
+  if (n === 1) {
+    return 0;
+  }
+
+  if (n === 2 || n === 3) {
+    return 1;
+  }
+
+  var int1 = 1, int2 = 1, fib = 0;
+
+  for (var i = 1;i <= n-3;i++) {
+    fib = int1 + int2;
+
+    int2 = int1;
+    int1 = fib;
+  }
+
+  return fib;
+}
+
+function getFibonacci (n) {
+  var nums = [];
+
+  for (var x = 1;x <= n;x++) {
+    nums.push(fibonacciIterative(x));
+  }
+
+  return nums;
+}
+
+console.log(fibonacciRecursive(1));
+console.log(fibonacciRecursive(2));
+console.log(fibonacciRecursive(3));
+console.log(fibonacciRecursive(4));
+console.log(fibonacciRecursive(5));
+console.log(fibonacciRecursive(10));
+// console.log(fibonacciRecursive(100));    // danger - may freeze browser
+// console.log(fibonacciRecursive(1000));   // danger - may freeze browser
+console.log("");
+
+console.log(fibonacciIterative(1));
+console.log(fibonacciIterative(2));
+console.log(fibonacciIterative(3));
+console.log(fibonacciIterative(4));
+console.log(fibonacciIterative(5));
+console.log(fibonacciIterative(10));
+console.log(fibonacciIterative(100));
+console.log(fibonacciIterative(1000));
+
+console.log(getFibonacci(1));
+console.log(getFibonacci(5));
+console.log(getFibonacci(10));
+console.log(getFibonacci(20));
+
+0
+1
+1
+2
+3
+34
+
+0
+1
+1
+2
+3
+34
+218922995834555200000
+2.686381002448534e+208
+[0]
+[0, 1, 1, 2, 3]
+[0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
+[0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181]
+</pre><br />
+
+Coding the Fibonacci series is interesting and can be a challenge if you have not done it in a while. But as it often comes up in interviews, its a good idea to practice it from time to time.<br /><br />
