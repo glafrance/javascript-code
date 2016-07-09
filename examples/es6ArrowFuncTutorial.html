@@ -1,0 +1,108 @@
+ES6 (ECMAScript 2015) has many new features. Browser support for ES6 features still has a way to go, but anyway in this tutorial we will discuss the new ES6 arrow functions.<br /><br />
+
+Arrow functions (also called "fat arrow" functions) are always anonymous and in terms of basic syntax effectively turn this:<br /><br /> 
+
+<pre>
+function (arguments) { 
+  expression 
+}
+</pre><br />
+
+into this:<br /><br />
+
+<pre>arguments => expression</pre><br />
+
+If using an expression after the arrow (=>), the return is implicit, so no return is required.<br /><br />
+
+Arrow functions have two main benefits, as seen above they are more concise than function expressions, and also "this" in arrow functions derives from the lexical environment, so function scoping is simplified. Both these points are best illustrated via examples.<br /><br />
+
+<pre>
+var multiply = function (x, y) {
+  return x * y;
+}
+
+console.log(multiply(10, 20));   // 200
+
+var multiplyES6 = (x, y) => x * y;
+
+console.log(multiplyES6(10, 20));  // 200
+</pre><br />
+
+The above example shows how concise arrow functions can be. The "function" and "return" keywords, and also the curly braces are unnecessary. Curly braces would be required if the function body includes more than a single statement.<br /><br />
+
+Arrow functions are even more concise when they take a single parameter, as parenthesis are then unnecessary. Empty parenthesis are necessary with no parameters.<br /><br />
+
+<pre>
+var breakString = function (str) {
+  return str.split(' ');
+}
+console.log(breakString('a b c d e'));     // ["a", "b", "c", "d", "e"]
+
+var breakStringES6 = str => str.split(' ');
+
+console.log(breakStringES6('a b c d e'));  // ["a", "b", "c", "d", "e"]
+</pre><br />
+
+Arrow functions returning an object literal require the literal to be wrapped in parenthesis, as the literal itself is wrapped in curly braces.<br /><br />
+
+<pre>
+var createFullName = (fname, lname) => ({ fullname: fname + ' ' + lname });
+
+console.log(createFullName('Bob', 'Crenshaw'));
+</pre><br />
+
+Lexical "this" in arrow functions requires a more involved explanation, beginning with the problems they solve.<br /><br />
+
+Before arrow functions, the value "this" inside a function was highly contextual:<br /><br />
+
+- a new object for constructor functions<br />
+- undefined in strict mode function calls<br />
+- the execution context object if the function is called as an "object method"<br />
+- etc...<br /><br />
+
+Consider this example code:<br /><br />
+
+<pre>
+function Person() {
+  // constructor defines "this" as an empty 
+  // object to which properties are added
+  this.age = 0;
+
+  setInterval(function addYear() {
+    // In non-strict mode, the addYear() function defines "this" 
+    // as the global object, which is different from the "this"
+    // defined by the Person() constructor.
+    this.age++;
+  }, 1000);
+}
+</pre><br />
+
+Before arrow functions, this scope issue was addressed like this:<br /><br />
+
+<pre>
+function Person() {
+  var self = this; 
+  self.age = 0;
+
+  setInterval(function addYear() {
+    // Refer to "self" for proper scope.
+    self.age++;
+  }, 1000);
+}
+</pre><br />
+
+The "lexical this" of arrow functions captures the "this" value of the "enclosing context", so the following code works as expected.<br /><br />
+
+<pre>
+function Person(){
+  this.age = 0;
+
+  setInterval(() => {
+    this.age++; // "this" properly refers to the Person object
+  }, 1000);
+}
+</pre><br />
+
+Because of lexical "this", keep in mind that invoking an arrow function using the call() or apply() methods only allows you to pass in arguments, but has no effect on "this". Also, arrow functions cannot be used as constructors and will throw an error when used with "new".<br /><br />
+
+As with any new features in JavaScript, the key is making an attempt to understand the subtleties of the new feature, and even more important testing your code to ensure it behaves as expected, in relevant scenarios.<br /><br />

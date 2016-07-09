@@ -93,7 +93,12 @@ a, a:active, a:focus, a:hover {
 
 #page-list li {
   font-size: 1rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
+}
+
+a.obviousLink, a.obviousLink:active, a.obviousLink:focus, a.obviousLink:hover {
+  text-decoration: underline;
+  color: blue;
 }
 
 #challenge-content, #show-solution, #solution {
