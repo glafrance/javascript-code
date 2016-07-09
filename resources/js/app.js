@@ -43,7 +43,7 @@ function otherSitesListener () {
         break;
     }
     if (url) {
-      window.open(url, '_blank');
+      window.open(url, '_self');
     }
     event.target.value = 'other Paragonica sites';
   };  
