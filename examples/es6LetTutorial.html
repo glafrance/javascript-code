@@ -1,0 +1,100 @@
+ES6, also known as ECMAScript 2015, ECMAScript 2016, or ECMAScript 6 depending on who you talk to, has many new features. Unfortunately, browser support for ES6 features is not at all complete, and probably never will be.<br /><br />
+
+Anyway, in this tutorial we will discuss the new ES6 "let" keyword.<br /><br />
+
+Usually you declare JavaScript variables using the "var" keyword, and such variables will be scoped to the enclosing function or the global object ("window" in the browser).The new ES6 "let" keyword allows you to declare variables that will be scoped to the enclosing block.<br /><br />
+
+<pre>
+function varFunc() {
+  var x = 1;
+  if (true) {
+    var x = 2;  // same variable!
+    console.log(x);  // 2
+  }
+  console.log(x);  // 2
+}
+
+function letFunc() {
+  let x = 1;
+  if (true) {
+    let x = 2;  // different variable
+    console.log(x);  // 2
+  }
+  console.log(x);  // 1
+}
+varFunc();
+letFunc();
+</pre><br />
+
+In the above example, in the varFunc() function the variable x is redeclared inside the "if" construct, but it is the same variable, a new variable is not created. However in the letFunc() function the redeclaration of x results in creation of a new variable whose scope is the "if" construct.<br /><br />
+
+Even if the first x is declared with var, the second x declared with let results in creation of a new variable.<br /><br />
+
+<pre>
+function letFunc() {
+  var x = 1;
+  if (true) {
+    let x = 2;  // different variable
+    console.log(x);  // 2
+  }
+  console.log(x);  // 1
+}
+</pre><br />
+
+Using "let" can result in cleaner code when inner functions are involved. In the following code, if variable i was declared with "var" instead of "let", clicking any of the &lt;li&gt; elements would output the text "element: 6 was clicked". Using "let" ensures each click handler refers to a different instance of variable i, and avoids having to deal with the "closure conundrum".<br /><br />
+
+<pre>
+var div = document.getElementById("myDiv");
+
+for (let i = 1; i <= 5; i++) {
+  let liElem = document.createElement("li");
+  liElem.appendChild(document.createTextNode("element: " + i));
+
+  liElem.onclick = function () {
+    console.log("element: " + i + " was clicked");
+  };
+  div.appendChild(liElem);
+}
+</pre><br />
+
+Also, using "let" instead of "var" at the top level of programs and functions does not create properties on the global object: <br /><br />
+
+<pre>
+var globOne = 'here';
+let globTwo = 'now here';
+console.log(this.globOne); // "here"
+console.log(this.globTwo); // undefined
+</pre><br />
+
+Other side effects to keep in mind when using "let":<br /><br />
+
+- redeclaring variables within the same function or block results in a SyntaxError<br />
+- referring to hoisted variables before their declarations results in a ReferenceError<br />
+- using "let" with variable names same as function parameter names results in ReferenceError in "for" loops<br /><br />
+
+<pre>
+if (true) {
+  let myVar = 5;
+  let myVar = 10; // SyntaxError thrown.
+}
+
+------------------------------
+
+function myFunc() {
+  console.log(fancyVar); // ReferenceError, though fancyVar is hoisted
+  let fancyVar = 10;
+}
+myFunc();
+
+------------------------------
+
+function printProps(obj){
+  for (let obj of obj.props) {   // ReferenceError
+    console.log(obj);
+  }
+}
+
+printProps({props:[1,2,3]});
+</pre><br />
+
+As with any new features in JavaScript, the key is making an attempt to understand the subtleties of the new feature, and even more important testing your code to ensure it behaves as expected, in relevant scenarios.<br /><br />
