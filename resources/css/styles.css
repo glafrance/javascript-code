@@ -31,7 +31,7 @@ html {
   overflow-y: scroll;
 }
 
-html, a, select {
+html, a {
   font-family: arial, helvetica, sans-serif;
   color: #767676;    
 }
@@ -44,12 +44,69 @@ body {
   padding-bottom: 1rem;
 }
 
+.header-links {
+  display: inline;
+}
+
 .home {
   padding: .5rem;
 }
 
 .home, .github {
   margin-right: 10rem;
+}
+
+#otherSitesNav {
+  float: right;
+  display: inline-block;
+  margin-right: 1rem;
+  margin-top: 1rem;
+}
+
+#otherSitesNav p {
+  color: #00f;
+  font-weight: 700;
+}
+
+#otherSitesTitleShort {
+  display: none;
+}
+
+#otherSitesNav:hover > ul li {
+  visibility: visible;
+}
+
+#otherSitesNav a:hover {
+  color: #00f;
+  cursor: pointer;
+}
+
+#otherSitesNav ul {
+  padding: 0 .5rem;
+}
+
+#otherSitesNav li {
+  visibility: hidden;
+  list-style-type: none;
+  padding: .3rem 0;
+}
+
+#otherSitesNav li + li {
+  border-top: .1rem solid #767676;
+}
+
+#otherSitesNav a {
+  text-decoration: none;
+}
+
+#main-header-title {
+  text-align: center;
+  margin: 0 0 2rem 0;
+}
+
+#main-header-title-short {
+  text-align: center;
+  display: none;
 }
 
 #left-column {
@@ -65,24 +122,6 @@ body {
 a, a:active, a:focus, a:hover {
   text-decoration: none;
   outline: none;
-}
-
-.header-links {
-  display: inline;
-}
-
-.other-sites {
-  padding: .1rem;
-}
-
-#main-header-title {
-  text-align: center;
-  margin: 0 0 2rem 0;
-}
-
-#main-header-title-short {
-  text-align: center;
-  display: none;
 }
 
 #page-list {
@@ -159,14 +198,45 @@ pre {
   .header-links {
     margin-bottom: .5rem;
   }
-  
-  .other-sites {
+
+  #otherSitesNav {
+    font-size: .8rem;
+    float: none;
     display: block;
     margin-left: auto;
     margin-right: auto;
-    margin-top: .5rem;
+    margin-top: .2rem;
+  }
+  
+  #otherSitesNav p {
+    font-weight: 400;
+    color: #767676;   
+  }
+  
+  #otherSitesNav #otherSitesTitle {
+    display: none;
   }
 
+  #otherSitesNav li {
+    display: none;
+  }
+
+  #otherSitesNav li + li {
+    border-top: 0;
+  }
+
+  #otherSitesNav a {
+    color: blue;
+  }
+
+  #otherSitesNav #otherSitesTitleShort {
+    display: inline;
+  }
+
+  #otherSitesNav:hover > ul li {
+    display: block;
+  }
+  
   #main-header-title {
     display: none;
   }
@@ -175,6 +245,8 @@ pre {
     display: block;
     font-size: .8rem;
     margin-bottom: 1rem;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   #left-column {
