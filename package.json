@@ -1,0 +1,20 @@
+{
+  "name": "nodejs-server-gl",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A web server built with nodejs and express, starting simple and will see how it goes.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server",
+    "watch-files": "node ./scripts/watch-files",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Greg Lafrance",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.14.0"
+  },
+  "devDependencies": {
+    "watch": "^0.19.1"
+  }
+}
