@@ -23,29 +23,17 @@ SOFTWARE.
 */
 
 function init() {
-  otherSitesListener();
+  otherSitesListeners();
 }
 
-
-function otherSitesListener () {
-  document.getElementById('paragonicaOtherSitesSelect').onchange = function (event) {
-    var url = '';
-    
-    switch(event.target.value) {
-      case 'japanese':
-        url = 'http://www.paragonica.com/japanese/index.html';
-        break;
-      case 'dashboard':
-        url = 'http://www.paragonica.com/dashboard';
-        break;
-      case 'flight':
-        url = 'http://www.paragonica.com/flightSimulator';
-        break;
-    }
-    if (url) {
-      window.open(url, '_self');
-    }
-    event.target.value = 'other Paragonica sites';
+function otherSitesListeners () {
+  var otherSitesNav = document.getElementById('otherSitesNav');
+  var otherSitesNavLinks = otherSitesNav.getElementsByTagName('li');
+  
+  document.getElementById('otherSitesTitleShort').onclick = function () {
+    for (var idx = 0;idx < otherSitesNavLinks.length;idx++) {
+      otherSitesNavLinks.item(idx).style.visibility = "visible";
+    }    
   };  
 }
 
