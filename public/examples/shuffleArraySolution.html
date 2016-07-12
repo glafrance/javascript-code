@@ -1,0 +1,35 @@
+The following is one solution to the problem, though it is hardly the most elegant or efficient:<br /><br />
+
+<pre>
+var states = ['Alabama', 'Alaska', 'American Samoa', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'District of Columbia', 'Federated States of Micronesia', 'Florida', 'Georgia', 'Guam', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Marshall Islands', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Northern Mariana Islands', 'Ohio', 'Oklahoma', 'Oregon', 'Palau', 'Pennsylvania', 'Puerto Rico', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virgin Island', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'];
+
+function shuffleArray (arr) {
+  var shuffled = [], indexes = [], item, num;
+
+  while (indexes.length < arr.length) {
+    num = Math.floor(Math.random() * 59);
+    if (indexes.indexOf(num) === -1) {
+      indexes.push(num);
+    }
+  }
+
+  for (num = 0;num < indexes.length;num++) {
+    shuffled[indexes[num]] = arr[num];
+  }
+
+  return shuffled;
+}
+
+var shuffledStates = shuffleArray(states);
+
+console.log(states.length === shuffledStates.length);
+console.log(states);
+console.log(shuffledStates);
+
+true
+
+["Alabama", "Alaska", "American Samoa", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "District of Columbia", "Federated States of Micronesia", "Florida", "Georgia", "Guam", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Marshall Islands", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Northern Mariana Islands", "Ohio", "Oklahoma", "Oregon", "Palau", "Pennsylvania", "Puerto Rico", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virgin Island", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming"]
+
+["Utah", "Maine", "Virginia", "South Carolina", "Hawaii", "Michigan", "Puerto Rico", "Kansas", "North Dakota", "Iowa", "Oregon", "Arkansas", "District of Columbia", "Connecticut", "Florida", "Rhode Island", "Nevada", "Montana", "West Virginia", "Guam", "Northern Mariana Islands", "Marshall Islands", "Georgia", "Alaska", "Tennessee", "California", "Idaho", "Kentucky", "Maryland", "Missouri", "New Mexico", "Ohio", "Wisconsin", "Illinois", "American Samoa", "Mississippi", "Delaware", "New York", "North Carolina", "Colorado", "Palau", "Wyoming", "Virgin Island", "Texas", "Washington", "New Hampshire", "Louisiana", "South Dakota", "Alabama", "Vermont", "Pennsylvania", "Arizona", "Federated States of Micronesia", "Massachusetts", "New Jersey", "Oklahoma", "Indiana", "Minnesota", "Nebraska"]
+</pre><br />
+
