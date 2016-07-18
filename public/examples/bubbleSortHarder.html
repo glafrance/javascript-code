@@ -1,0 +1,20 @@
+<div>Bubble sort algorithms repeatedly step through a list of items to be sorted. Adjacent items are compared and swapped if they are in the wrong order. You repeat going through the list until no swaps are needed, indicating the list is sorted. Bubble sort is named for the way elements 'bubble' to the top of the list.<br /><br />
+
+Challenge - this is a problem of intermediate complexity. Create a function taking two arrays as parameters, an array of US state names in random order to be sorted, and an array of letters used in the sort. The resultant state names should be sorted first using the letters in the second parameter array, and then the remaining state names should simply be sorted in alphabetical order.<br /><br />
+  
+So if the second parameter array contains these letters: [ 'm', 'c', 'n' ], the sorted array will start with states beginning with 'm', then 'c', then 'n' (alphabetically sorted within those groups), followed by the rest of the states in alphabetical order (those beginning with 'a', then 'd', then 'e', etc.)<br /><br />
+  
+So given this array of US state names:<br /><br />
+
+[ "Utah", "Maine", "Virginia", "South Carolina", "Hawaii", "Michigan", "Kansas", "North Dakota", "Iowa", "Oregon", "Arkansas", "Connecticut", "Florida", "Rhode Island", "Nevada", "Montana", "West Virginia", "Georgia", "Alaska", "Tennessee", "California", "Idaho", "Kentucky", "Maryland", "Missouri", "New Mexico", "Ohio", "Wisconsin", "Illinois", "Mississippi", "Delaware", "New York", "North Carolina", "Colorado", "Wyoming", "Texas", "Washington", "New Hampshire", "Louisiana", "South Dakota", "Alabama", "Vermont", "Pennsylvania", "Arizona", "Massachusetts", "New Jersey", "Oklahoma", "Indiana", "Minnesota", "Nebraska" ]<br /><br />
+  
+And this array of sort letters:<br /><br />
+  
+[ 'm', 'c', 'n' ]<br /><br />
+  
+This will be the resultant sorted array:<br /><br />  
+
+[ "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "California", "Colorado", "Connecticut", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Alabama", "Alaska", "Arizona", "Arkansas", "Delaware", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming" ]<br /><br /> 
+  
+NOTE: the secondary sort using the second parameter array does not need to be performed directly within the bubble sort mechanism. Just achieve the desired result. Also, you can either sort the array in place (because arrays are passed into functions by reference), or you can return the resultant array from the function.
+</div>

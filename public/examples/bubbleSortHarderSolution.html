@@ -1,0 +1,75 @@
+<pre>
+Here is one of the many possible ways this problem could be solved:
+
+var states = [ "Utah", "Maine", "Virginia", "South Carolina", "Hawaii", "Michigan", "Kansas", "North Dakota", "Iowa", "Oregon", "Arkansas", "Connecticut", "Florida", "Rhode Island", "Nevada", "Montana", "West Virginia", "Georgia", "Alaska", "Tennessee", "California", "Idaho", "Kentucky", "Maryland", "Missouri", "New Mexico", "Ohio", "Wisconsin", "Illinois", "Mississippi", "Delaware", "New York", "North Carolina", "Colorado", "Wyoming", "Texas", "Washington", "New Hampshire", "Louisiana", "South Dakota", "Alabama", "Vermont", "Pennsylvania", "Arizona", "Massachusetts", "New Jersey", "Oklahoma", "Indiana", "Minnesota", "Nebraska" ];
+
+var sortChars = [ 'm', 'c', 'n' ];
+
+function bubbleSort (list, top) {
+  var listIdx, position, listlen = list.length;
+  var temp, needNextPass = true, topIdx, toplen = top.length;
+  var sorted = [], topItems = [], otherItems = [];
+
+  // FIRST PERFORM A REGULAR BUBBLE SORT OF THE ENTIRE LIST
+  // the actual sort mechanism looks at the current item
+  // and the next item, so start the outer loop at index 1
+  for (listIdx = 1;listIdx < listlen && needNextPass;listIdx++) {
+    // the list might be sorted, so a next pass is not needed
+    needNextPass = false;
+
+    // how far the inner loop goes up the list is limited by the
+    // updated listIdx of the outer loop, because after each pass,
+    // the sort mechanism has bubbled an item to the top
+    for (position = 0;position < listlen - listIdx;position++) {
+
+      // if an item is greater than the item after it,
+      // the two items need to be swapped in position
+      if (list[position] > list[position + 1]) {
+        // need a temp item, otherwise list[position] would
+        // be overwritten and we need it to set list[position + 1]
+        temp = list[position];
+        list[position] = list[position + 1];
+        list[position + 1] = temp;
+
+        // if a swap was made, then we might need more swaps,
+        // to get the item bubbled further up the list.
+        // Only when no swap is performed in this inner loop
+        // do we know the list is fully sorted, and no next
+        // pass is needed
+        needNextPass = true;
+      }
+    }
+  }
+
+  // NOW PLACE THE 'TOP' ITEMS AND 'NON-TOP' ITEMS IN TEMP ARRAYS
+  // First create a copy of the sorted list.
+  sorted = [].concat(list);        
+  for (topIdx = 0;topIdx < toplen;topIdx++) {
+    listlen = sorted.length;
+    for (listIdx = 0;listIdx < listlen;listIdx++) {
+      if (sorted[listIdx].charAt(0).toLowerCase() === top[topIdx]) {
+        topItems.push(sorted[listIdx]);
+      } else {
+        otherItems.push(sorted[listIdx]);
+      }
+    }
+    if (topIdx !== toplen - 1) {
+      sorted = [].concat(otherItems);
+      otherItems = [];
+    }
+  }
+
+  // NOW RETURN AN ARRAY OF THE TOP ITEMS CONCATENATED WITH THE OTHER ITEMS
+  return topItems.concat(otherItems);
+}
+
+console.log(states);
+states = bubbleSort(states, sortChars);
+console.log(states);
+
+OUTPUT:
+
+[ "Utah", "Maine", "Virginia", "South Carolina", "Hawaii", "Michigan", "Kansas", "North Dakota", "Iowa", "Oregon", "Arkansas", "Connecticut", "Florida", "Rhode Island", "Nevada", "Montana", "West Virginia", "Georgia", "Alaska", "Tennessee", "California", "Idaho", "Kentucky", "Maryland", "Missouri", "New Mexico", "Ohio", "Wisconsin", "Illinois", "Mississippi", "Delaware", "New York", "North Carolina", "Colorado", "Wyoming", "Texas", "Washington", "New Hampshire", "Louisiana", "South Dakota", "Alabama", "Vermont", "Pennsylvania", "Arizona", "Massachusetts", "New Jersey", "Oklahoma", "Indiana", "Minnesota", "Nebraska" ]
+
+[ "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "California", "Colorado", "Connecticut", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Alabama", "Alaska", "Arizona", "Arkansas", "Delaware", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming" ]
+</pre>
