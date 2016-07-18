@@ -95,10 +95,6 @@ body {
   border-top: .1rem solid #767676;
 }
 
-#otherSitesNav a {
-  text-decoration: none;
-}
-
 #main-header-title {
   text-align: center;
   margin: 0 0 2rem 0;
@@ -120,7 +116,6 @@ body {
 }
 
 a, a:active, a:focus, a:hover {
-  text-decoration: none;
   outline: none;
 }
 
