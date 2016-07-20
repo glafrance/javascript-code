@@ -1,0 +1,58 @@
+<div>Merge sort algorithms divide an array of items to be sorted into two temporary arrays, recursively apply the merge sort on the two temporary arrays, and then merge the two sorted temporary arrays into the final sorted array.<br /><br />
+  
+Consider using a merge sort with this array: [ 2, 9, 5, 4, 8, 1, 6, 7 ]<br /><br />
+  
+First the merge sort divides the array into two temporary arrays: [ 2, 9, 5, 4 ] and [ 8, 1, 6, 7 ]<br /><br />
+  
+Then the merge sort is recursively applied to both of these arrays until they are sorted: [ 2, 4, 5, 9 ] and [ 1, 6, 7, 8 ]<br /><br />
+  
+And finally, the two sorted temporary arrays are merged to the final, sorted array: [ 1, 2, 4, 5, 6, 7, 8, 9 ]<br /><br />
+  
+To more clearly understand how merge sort operates, we will look at each step.<br /><br />
+  
+Starting array: [ 2, 9, 5, 4, 8, 1, 6, 7 ]<br /><br />  
+
+Two temporary arrays: [ 2, 9, 5, 4 ] and [ 8, 1, 6, 7 ]<br /><br />
+  
+Recursively merge sort the first array: [ 2, 9, 5, 4 ]<br /><br /> 
+  
+Two temporary arrays: [ 2, 9 ] and [ 5, 4 ]<br /><br /> 
+  
+Recursively merge sort the first array: [ 2, 9 ]<br /><br />   
+
+Two temporary arrays: [ 2 ] and [ 9 ]<br /><br /> 
+  
+Merge these two in sorted order [ 2 ] and [ 9 ] become [ 2, 9 ] (they were already in sorted order)<br /><br />   
+
+Recursively merge sort the second array: [ 5, 4 ]<br /><br /> 
+  
+Two temporary arrays: [ 5 ] and [ 4 ]<br /><br /> 
+  
+Merge these two in sorted order [ 5 ] and [ 4 ] become [ 4, 5 ]<br /><br />   
+
+Merge these two in sorted order [ 2, 9 ] and [ 4, 5 ] become [ 2, 4, 5, 9 ]<br /><br />
+  
+Recursively merge sort the second array: [ 8, 1, 6, 7 ]<br /><br /> 
+  
+Two temporary arrays: [ 8, 1 ] and [ 6, 7 ]<br /><br /> 
+  
+Recursively merge sort the first array: [ 8, 1 ]<br /><br />   
+
+Two temporary arrays: [ 8 ] and [ 1 ]<br /><br /> 
+  
+Merge these two in sorted order [ 8 ] and [ 1 ] become [ 1, 8 ]<br /><br />   
+
+Recursively merge sort the second array: [ 6, 7 ]<br /><br /> 
+  
+Two temporary arrays: [ 6 ] and [ 7 ]<br /><br /> 
+  
+Merge these two in sorted order [ 6 ] and [ 7 ] become [ 6, 7 ] (they were already in sorted order)<br /><br />   
+
+Merge these two in sorted order [ 1, 8 ] and [ 6, 7 ] become [ 1, 6, 7, 8 ]<br /><br />   
+
+Merge these two in sorted order [ 2, 4, 5, 9 ] and [ 1, 6, 7, 8 ] become [ 1, 2, 4, 5, 6, 7, 8, 9 ]<br /><br />
+  
+Challenge - create two functions that achieve a merge sort to sort the following array of state names in alphabetical order. One of these functions will take the array to be sorted. The other function takes three arrays and merges the first two into the third (the third parameter array is empty). The first function uses the second function as it merges the two temporary arrays during the merge sort.<br /><br />
+
+["Utah", "Maine", "Virginia", "South Carolina", "Hawaii", "Michigan", "Kansas", "North Dakota", "Iowa", "Oregon", "Arkansas", "Connecticut", "Florida", "Rhode Island", "Nevada", "Montana", "West Virginia", "Georgia", "Alaska", "Tennessee", "California", "Idaho", "Kentucky", "Maryland", "Missouri", "New Mexico", "Ohio", "Wisconsin", "Illinois", "Mississippi", "Delaware", "New York", "North Carolina", "Colorado", "Wyoming", "Texas", "Washington", "New Hampshire", "Louisiana", "South Dakota", "Alabama", "Vermont", "Pennsylvania", "Arizona", "Massachusetts", "New Jersey", "Oklahoma", "Indiana", "Minnesota", "Nebraska"]
+</div>
