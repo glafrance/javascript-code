@@ -24,6 +24,52 @@ SOFTWARE.
 
 function init() {
   otherSitesListeners();
+  
+  // Add the Google Analytics <script> tag with the trackingID.
+  this.addGoogleAnalytics();
+}
+
+/**
+ * Add the Google Analytics <script> tag.
+ * This is so we don't need our trackingID submitted to git.
+ */
+function addGoogleAnalytics () {
+  var data, url, urlRoot = '', options = {};
+  var callback, scriptTagData, scriptTag;
+
+  scriptTagData = "(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){" +
+    "(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o)," +
+    "m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)" +
+    "})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');" +
+    "ga('create', 'TRACKING_ID', 'auto');" +
+    "ga('send', 'pageview');";
+
+  url = 'google_analytics.json';
+
+  // After the trackingID has been obtained, add the 
+  // Google Analytics <script> tag.
+  callback = function (options) {
+    if (options) {
+      if (options.hasOwnProperty('data')) {
+        data = JSON.parse(options.data);
+        if (data.hasOwnProperty('trackingID')) {
+          scriptTagData = scriptTagData.replace('TRACKING_ID', data.trackingID);  
+
+          scriptTag = document.createElement('script');
+          scriptTag.innerHTML = scriptTagData;
+          document.head.appendChild(scriptTag);
+        }
+      }
+    }
+  };
+
+  this.makePageRequest({
+    url: url,
+    urlRoot: urlRoot,
+    callback: callback,
+    contentType: 'application/json',
+    callbackOptions: options
+  });
 }
 
 function otherSitesListeners () {
@@ -38,7 +84,7 @@ function otherSitesListeners () {
 }
 
 function showPage (id, solutionId) {
-  var data, callback = this.processPage;
+  var data, urlRoot = 'examples/', callback = this.processPage;
 
   document.getElementById('challenge-content').style.display = "none";
   document.getElementById('solution').style.display = "none";
@@ -49,6 +95,7 @@ function showPage (id, solutionId) {
   if (id) {
     makePageRequest({
       url: id,
+      urlRoot: urlRoot,
       callback: callback,
       solutionId: solutionId || null
     });
@@ -58,6 +105,8 @@ function showPage (id, solutionId) {
 }
 
 function processPage (data, solutionId) {
+  var urlRoot = 'examples/';
+  
   if (solutionId) {
     document.getElementById('challenge-content').innerHTML = data;
     document.getElementById('challenge-content').style.display = "block";
@@ -65,6 +114,7 @@ function processPage (data, solutionId) {
     
     makePageRequest({
       url: solutionId,
+      urlRoot: urlRoot,
       callback: processSolution
     });
   } else {

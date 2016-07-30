@@ -1,0 +1,119 @@
+Big O notation is used in computer science to describe the performance or complexity of an algorithm.<br /><br />
+
+Big O notation deals specifically with the worst-case scenario, in terms of execution time or memory/disk used by an algorithm.<br /><br />
+
+<h2>O(1)</h2><br />
+
+O(1) describes an algorithm that executes in the same time or uses the same memory/disk space, regardless of the size of the input data set:<br /><br />
+
+<pre>
+function checkFirstItemNull(arr) {
+  return (arr[0] === null);
+}
+</pre><br />
+
+The above function always compares the first value in the array with the value null, and returns the result of that comparison. It doesn't matter if the array contains a single item, or contains one million items, the execution time and memory/disk requirements are the same.<br /><br />
+
+The blue line in the following graph shows how the execution time for an O(1) algorithm is always the same.<br /><br />
+
+<img class="bigo-img" src="/resources/images/bigo/0_1.png" /><br />
+
+You don't really understand Big O unless you can look at an algorithm and express it in Big O notation. How can you recognize an O(1) algorithm? No matter how big the input is, there is only one output, like the function above.<br /><br />
+
+<h2>O(N)</h2><br />
+
+O(N) describes an algorithm whose performance is linear in relationship to the size of the input data.<br /><br />
+
+<pre>
+function contains(arr, val) {
+  var retVal = false, idx, len = arr.length;
+  
+  for (idx = 0;idx < len;idx++) {
+    if (arr[idx] === val) {
+      return true;
+    }
+  }
+  
+  return retVal;
+}
+</pre><br />
+
+For the above function, the performance decreases linearly as the size of the input array increases.<br /><br />
+
+Note that Big O notation represents the worst-case scenario for algorithms. So the above function could return early if the val is found, for example, in the middle of arr, but Big O assumes the worst, that the entire array is searched.<br /><br />
+
+<img class="bigo-img" src="/resources/images/bigo/0_N.png" /><br />
+
+As seen in the above image, when the data set gets to 100, execution time is also at 100. This linear progression represents O(N).<br /><br />
+
+How can you recognize an O(N) algorithm? Algorithms whose performance change is linear iterate n times. Counting quarters one-by-one is a linear operation, the more quarters, the longer it takes to count them (n operations).<br /><br />
+
+<h2>O(N&sup2;)</h2><br />
+
+O(N&sup2;) describes an algorithm whose performance is directly proportional to the square of the input data set size. You commonly see this in algorithms with nested interations over the data set. Iterations nested three, four, or more levels deep will result in O(N&sup3;), O(N^4), etc.<br /><br />
+
+You also see O(N&sup2;) algorithms when every combination of input collections must be checked. O(N&sup2;) is also known as "quadratic time", and O(N&sup3;) as cubic time.<br /><br />
+
+<pre>
+function checkDuplicates(arr) {
+  var idx1, idx2, len = arr.length;
+
+  for (idx1 = 0;idx1 < len;idx1++) {
+    for (idx2 = 0;idx2 < len;idx2++) {
+      // don't compare an item with itself
+      if(idx1 === idx2) {
+        continue;
+      }
+
+      if (arr[idx1] === arr[idx2]) {
+        return true;
+      } 
+    }
+  }
+
+  return false;
+}
+</pre><br />
+
+In the above function, because the inner loop iterates the entire array for each pass of the outer loop, this algorithm is O(N&sup2;). For an array of 10 elements, that is 100 iterations (10 x 10).<br /><br />
+
+<img class="bigo-img" src="/resources/images/bigo/0_N2.png" /><br />
+
+Notice the dramatic increase is number of operations for increases in the data set, compared to O(1) and O(N), for algorithms of O(N&sup2;) time complexity.<br /><br />
+
+How can you recognize an O(N&sup2;) algorithm? Look for a loop that executes N times, inside a loop that executes N times, or look for sitations where all combinations of multiple collections of items are compared.<br /><br />
+
+<h2>O(2^N)</h2><br />
+
+O(2^N) describes an algorithm <br /><br />
+
+<br /><br />
+
+<pre>
+
+</pre><br />
+
+<br /><br />
+
+<img class="bigo-img" src="/resources/images/bigo/0_2N.png" /><br />
+
+<br /><br />
+
+How can you recognize an O(2^N) algorithm? <br /><br />
+
+<br /><br />
+
+<br /><br />
+
+<br /><br />
+
+<br /><br />
+
+<br /><br />
+
+<br /><br />
+
+
+
+<pre>
+</pre><br />

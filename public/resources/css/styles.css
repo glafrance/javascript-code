@@ -161,6 +161,11 @@ pre {
   word-wrap: break-word;       /* Internet Explorer 5.5+ */
 }
 
+.bigo-img {
+  width: 32rem;
+  height: 24rem;
+}
+
 /*********************************************/
 @media all  and (max-width: 600px) {
   html {

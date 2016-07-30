@@ -27,7 +27,7 @@
 // wrong data values due to how closures work.
 function makePageRequest (options) {
   (function(options) {
-    var httpRequest = new XMLHttpRequest();
+    var fullUrl, httpRequest = new XMLHttpRequest();
 
     if (!httpRequest) {
       console.log('makePageRequest - cannot create an XMLHTTP instance');
@@ -37,6 +37,8 @@ function makePageRequest (options) {
     if(!validOptions(options)) {
       return false;
     }
+    
+    fullUrl = window.location.origin + '/' + options.urlRoot + options.url + '?pseudoParam=' + new Date().getTime();
 
     httpRequest.onreadystatechange = function () {
       if (httpRequest.readyState === XMLHttpRequest.DONE) {
@@ -48,7 +50,7 @@ function makePageRequest (options) {
       }
     };
 
-    httpRequest.open('GET', 'examples/' + options.url + '?pseudoParam=' + new Date().getTime());
+    httpRequest.open('GET', fullUrl);
     httpRequest.setRequestHeader('Content-Type', options.contentType || 'text/plain');
     httpRequest.send();
   })(options)
