@@ -85,35 +85,102 @@ How can you recognize an O(N&sup2;) algorithm? Look for a loop that executes N t
 
 <h2>O(2^N)</h2><br />
 
-O(2^N) describes an algorithm <br /><br />
+O(2^N) describes an algorithm whose execution time doubles with each additional element in the data set. O(2^N) algorithms execute in exponential time, and are impractical when the input size becomes fairly large.<br /><br />
 
-<br /><br />
+An example of an O(2^N) algorithm is recursive computation of Fibonacci numbers.<br /><br />
 
 <pre>
-
+function fib(n) {
+  if (n <= 1) {
+    return n;
+  } else {
+    return fib(n - 2) + fib(n - 1);
+  }
+}
 </pre><br />
-
-<br /><br />
 
 <img class="bigo-img" src="/resources/images/bigo/0_2N.png" /><br />
 
-<br /><br />
+<h2>O(logN)</h2><br />
 
-How can you recognize an O(2^N) algorithm? <br /><br />
+O(logN) logarithmic algorithms have more interesting execution patterns.<br /><br />
 
-<br /><br />
+A good example of a O(logN) algorithm a binary search. In a binary search of a list of sorted numbers, the number to be found is compared with the number at the middle of the sorted list. If there is a match then the search is over, otherwise another binary search is performed on either the left or right half of the sorted list, depending on whether the search target number is greater than or less than the middle list number. This continues with the searched list being halved with each search step until a match is found, or until it is determined that the list does not contain the search number.<br /><br />
 
-<br /><br />
-
-<br /><br />
-
-<br /><br />
-
-<br /><br />
-
-<br /><br />
-
-
+The execution time of the binary search flattens out as it progresses because the input data set grows smaller with each iteration. Here is an example of a function performing a binary search:<br /><br />
 
 <pre>
+function binarySearch(arr, key) {
+  var low = 0, high = arr.length - 1;
+  var mid;
+
+  while (high >= low) {
+    mid = parseInt((low + high) / 2);
+
+    if (key < arr[mid]) {
+      high = mid - 1;
+    } else if (key === arr[mid]) {
+      return mid;          
+    } else {
+      low = mid + 1;  
+    }
+  }
+  return -1;
+}
+
+var testArray = [3, 9, 16, 22, 28, 31, 45, 48, 64, 71, 93];
+      
+console.log("0: " + binarySearch(testArray, 3));
+console.log("10: " + binarySearch(testArray, 93));
+console.log("4: " + binarySearch(testArray, 28));
+console.log("-1: " + binarySearch(testArray, 1));
+console.log("-1: " + binarySearch(testArray, 100));
+console.log("-1: " + binarySearch(testArray, 29));
 </pre><br />
+
+<img class="bigo-img" src="/resources/images/bigo/0_logN.png" /><br />
+
+<h2>O(N!)</h2><br />
+
+O(N!) algorithms are famous for having terrible execution efficiency.<br /><br />
+
+A good example of a O(N!) algorithm is solving the traveling salesman problem with a brute-force search. In general, any algorithm that calculates all permutation of a given array is O(N!). Here is a very quick example (WARNING, USING AN INPUT VALUE GREATER THAN 10 OR 11 COULD FREEZE UP YOUR BROWSER !!!):<br /><br />
+
+<pre>
+function nFactorial (n) {
+  for (var i = 0;i < n;i++) {
+    nFactorial(n - 1);
+  }
+}
+
+var start;
+
+start = Date.now();
+nFactorial(10);
+console.log((Date.now() - start)/1000);
+
+start = Date.now();
+nFactorial(11);
+console.log((Date.now() - start)/1000);
+
+WARNING, USING AN INPUT VALUE GREATER THAN 10 OR 11 COULD FREEZE UP YOUR BROWSER !!!
+start = Date.now();
+nFactorial(12);
+console.log((Date.now() - start)/1000);
+</pre><br />
+
+On my crappy laptop, here is the time required for values of 10, 11, and 12:<br /><br />
+
+input of 10: 0.193 seconds<br />
+input of 11: 2.139 seconds<br />
+input of 12: 25.896 seconds<br /><br />
+
+As you can see, if you are writing code and you end up with an O(N!) algorithm, you need to make some improvements!<br /><br />
+
+In the traveling salesman problem, a classic O(N!) problem, you are given a list of cities and the distances between each pair of cities, and you need to figure out the shortest possible route that visits each city exactly once and then returns to the origin city.<br /><br />
+
+<img class="bigo-img" src="/resources/images/bigo/0_Nfactorial.png" /><br />
+<br />
+
+That's it for now. Hopefully this enhances your understanding of Big O notation, and inspires you to do more research on the topic. A greater understanding of Big O notation, analysis on algorithms in terms of Big O, and being able to recognize the execution efficiency of an algorithm, can help in job interviews, and can help you write better code!<br />
+<br /> 
