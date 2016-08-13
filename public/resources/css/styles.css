@@ -166,6 +166,40 @@ pre {
   height: 24rem;
 }
 
+.tree-image-container {
+  display: inline-block;
+  margin-right: 2rem;
+}
+
+.tree-image {
+  width: 10rem;
+  height: 8.1rem;
+}
+
+.single-tree-image {
+  width: 19rem;
+  height: 9.5rem;
+}
+
+.tree-caption {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.centered-text {
+  text-align: center;
+}
+
+.single-tree-image2 {
+  width: 19rem;
+  height: 9.5rem;  
+}
+
+.single-tree-image3 {
+  width: 11rem;
+  height: 9rem;  
+}
+
 /*********************************************/
 @media all  and (max-width: 600px) {
   html {

@@ -1,0 +1,116 @@
+<pre>
+var testArray = [-6, -2, 2, 9, 2, 69, 1, 3, -24, -7, 0, 2, 7];
+
+// constructor function for a Heap object
+var Heap = function (arr) {
+  // ensure Heap objects can only be created with "new" operator
+  if (!(this instanceof Heap)) {
+    return new Heap(arr);
+  }
+
+  // start with an empty array
+  this.arr = [];
+
+  // populate the array
+  if (arr) {
+    for (var i = 0;i < arr.length;i++) {
+      this.add(arr[i]);
+    }
+  }        
+}
+
+// add object to heap in right place
+Heap.prototype.add = function (obj) {
+  var currentIndex, parentIndex, temp;
+
+  // initially add obj to end of heap
+  this.arr.push(obj);
+
+  currentIndex = this.getSize() - 1;
+
+  while (currentIndex > 0) {
+    // parent node is (childIndex - 1) / 2
+    parentIndex = parseInt((currentIndex - 1) / 2);
+
+    // if obj is greater than parent, then move it above parent
+    if (this.arr[currentIndex] > this.arr[parentIndex]) {
+      temp = this.arr[currentIndex];
+      this.arr[currentIndex] = this.arr[parentIndex];
+      this.arr[parentIndex] = temp;
+    } else {
+      // tree is a heap now
+      break;
+    }
+    currentIndex = parentIndex;
+  }
+} 
+
+// remove the root node from the heap
+Heap.prototype.remove = function () {
+  var removed, maxIndex, temp, currentIndex;
+  var leftChildIndex, rightChildIndex;
+
+  if (this.getSize() === 0) {
+    return null;
+  }
+
+  // the removed root node will be returned
+  removed = this.arr[0];
+
+  // make the last node the new root
+  this.arr[0] = this.arr.pop();
+
+  currentIndex = 0;
+
+  while (currentIndex < this.getSize()) {
+    leftChildIndex = (2 * currentIndex) + 1;
+    rightChildIndex = (2 * currentIndex) + 2;
+
+    // the tree is a heap
+    if (leftChildIndex >= this.getSize()) {
+      break;
+    }
+
+    // find the larger of the children
+    maxIndex = leftChildIndex;
+
+    if (rightChildIndex < this.getSize()) {
+      if (this.arr[maxIndex] < this.arr[rightChildIndex]) {
+        maxIndex = rightChildIndex;
+      }
+    }
+
+    // swap if the current node is less than the max node
+    if (this.arr[currentIndex] < this.arr[maxIndex]) {
+      temp = this.arr[maxIndex];
+      this.arr[maxIndex] = this.arr[currentIndex];
+      this.arr[currentIndex] = temp;
+      currentIndex = maxIndex;
+    } else {
+      // the tree is a heap
+      break;
+    }
+  }
+
+  return removed;
+}
+
+Heap.prototype.getSize = function () {
+  return this.arr.length;
+}
+
+// sort and array using the Heap object
+var heapSort = function (arr) {
+  var heap = new Heap(arr);
+  console.log(heap.arr);          // [69, 3, 9, 2, 2, 7, 1, -6, -24, -7, 0, -2, 2]
+  var index, len = arr.length;
+
+  for (index = len - 1;index >= 0;index--) {
+    arr[index] = heap.remove();
+  }
+}
+
+console.log(testArray);          // [-6, -2, 2, 9, 2, 69, 1, 3, -24, -7, 0, 2, 7]
+heapSort(testArray);
+console.log(testArray);          // [-24, -7, -6, -2, 0, 1, 2, 2, 2, 3, 7, 9, 69]
+</pre>

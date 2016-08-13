@@ -1,0 +1,158 @@
+<div>Heap sort makes use of a binary heap. A binary heap is a "complete" binary tree. Also, in a binary heap each node in the tree is greater than or equal to any of its descendant nodes.<br /><br />
+  
+A binary tree is represented by a root node at the top, and two child binary trees, referred to as the left subtree and the right subtree.<br /><br />
+    
+A binary tree is "complete" if each of its levels is full, with the exception that if the last level is not full, then at that last level all the leaves are placed on the left. Let's look at some examples.<br /><br />  
+
+Below are four binary trees. Trees one and two are complete, but trees three and four are not complete. Only tree one is a heap.<br /><br />
+  
+Tree three is not complete because at its last level not all leaves are on the left (meaning there are two leaves on the right, and only one leaf on the left). Tree four is not complete because level two is not full.<br /><br />
+  
+Tree two is complete, but it is not a heap because the root (48) is less than its right child (57).<br /><br />
+  
+So only tree one is a heap, a complete binary tree where each node is greater than or equal to any of its descendant nodes.<br /><br />  
+  
+<div>
+  <div class="tree-image-container">
+    <img class="tree-image centered-text" src="/resources/images/trees/complete_heap_tree1.png" />
+    <p class="tree-caption centered-text">binary tree one</p>
+  </div>  
+
+  <div class="tree-image-container">
+    <img class="tree-image centered-text" src="/resources/images/trees/complete_tree1.png" />
+    <p class="tree-caption centered-text">binary tree two</p>
+  </div>  
+
+  <div class="tree-image-container">
+    <img class="tree-image centered-text" src="/resources/images/trees/tree1.png" />
+    <p class="tree-caption centered-text">binary tree three</p>
+  </div>  
+
+  <div class="tree-image-container">
+    <img class="tree-image centered-text" src="/resources/images/trees/tree2.png" />
+    <p class="tree-caption centered-text">binary tree four</p>
+  </div> 
+</div><br />  
+ 
+A heap can be stored in an array, and we can easily find the child nodes for a parent, or the parent of a child node. Consider this more complex heap and an array storing the heap values:<br /><br />
+  
+<div>
+  <img class="single-tree-image centered-text" src="/resources/images/trees/complete_heap_tree2.png" />
+</div> <br /><br />   
+    
+<p>[ 57, 35, 43, 22, 29, 37, 18, 14, 20, 12, 26, 33, 21, 9 ]</p><br />
+
+The root of the heap (57) is at index 0, and its two children are at positions 1 (35) and 2 (43).<br /><br />
+    
+For a node at index n, the left child is at 2n + 1, and its right child is at 2n + 2. You find the parent of any node with (n - 1) / 2. <br /><br />  
+    
+So for the node having value 37 at position 5 in the array, its left child is at index 11 (2n + 1), and its right child is at index 12 (2n + 2).<br /><br />  
+
+Node value 22 at position 3 in the array has its parent at index 1 ((n - 1) / 2 ).<br /><br />  
+  
+<h4>Adding a Node</h4><br />   
+  
+To add a new node to the heap, you first add the new node to the end of the heap, and then rebuild the tree as follows:<br /><br />  
+
+<pre>
+- make the last node the "current node"
+- while the current node is greater than its parent
+    - swap the current node with its parent
+    - now the current node has moved one level up
+</pre><br />
+  
+When this is done, the new node is at the proper location in the heap. Let's look at an example. Start with this heap:<br /><br />  
+
+<div>
+  <img class="tree-image centered-text" src="/resources/images/trees/complete_heap_tree1.png" />
+</div><br />   
+
+Imagine adding a value of 62 to the heap. You first add it to the end of the heap:<br /><br />  
+
+<img class="single-tree-image3" src="/resources/images/trees/complete_heap_tree1_add_node_1.png" /><br /><br />
+
+Comparing it with its parent (24), you swap the new node and its parent:<br /><br />
+
+<img class="single-tree-image3" src="/resources/images/trees/complete_heap_tree1_add_node_2.png" /><br /><br />
+
+Comparing it with its parent (43), you swap the new node and its parent:<br /><br />
+
+<img class="single-tree-image3" src="/resources/images/trees/complete_heap_tree1_add_node_3.png" /><br /><br />
+  
+Comparing it with its parent (57), you swap the new node and its parent:<br /><br />
+
+<img class="single-tree-image3" src="/resources/images/trees/complete_heap_tree1_add_node_4.png" /><br /><br />
+
+Now the new node is at the proper location in the heap.<br /><br />
+
+Keep in mind, your code is first adding the new value at the end of the array storing the heap. Then it determines where in the array the new node's parent is located (n - 1) / 2, and if necessary swaps the new node with the parent node value in the array.<br /><br />
+
+<h4>Removing a Node</h4><br />   
+  
+To remove the root (top-most) node from the heap, you first replace the root node with the last node in the heap, and then rebuild the tree as follows:<br /><br />  
+
+<pre>
+- make the (new) root node the "current node"
+- while the current node is smaller than one of its immediate children
+    - swap the current node with the larger of its children
+    - now the current node has moved one level down
+</pre><br />
+  
+When this is done, the (new) root node is at the proper location in the heap. Let's look at an example. Start with this heap:<br /><br />  
+
+<div>
+  <img class="tree-image" src="/resources/images/trees/complete_heap_tree1_add_node_4.png" />
+</div><br />   
+
+To remove the root node (62) from the heap, you first replace it with the last node of the heap:<br /><br />  
+
+<img class="tree-image" src="/resources/images/trees/complete_heap_tree1_remove_node_1.png" /><br /><br />
+  
+Comparing it with its children (48 and 57), you swap the root node and its larger child (57):<br /><br />
+
+<img class="tree-image" src="/resources/images/trees/complete_heap_tree1_remove_node_2.png" /><br /><br />
+
+Comparing it with its children (37 and 43), you swap the node and its larger child (43):<br /><br />
+
+<img class="tree-image" src="/resources/images/trees/complete_heap_tree1_remove_node_3.png" /><br /><br />
+
+Now the original root node has been removed and the heap is still in proper form.<br /><br />
+
+Keep in mind, your code is removing the first item in the array storing the heap, and then moving the last item in the array to the start of the array. Then it determines where in the array that first item's children are located (2n + 1) and (2n + 2), and swaps the first item with it's largest child in the array.<br /><br />
+  
+<h4>Performing a Heap Sort</h4><br />   
+  
+Performing a heap sort on an array involves the following steps:<br /><br />  
+
+<pre>
+- add all array items to a binary heap tree
+- remove all root nodes from the heap
+</pre><br />
+  
+When this is done, the original array will be sorted.<br /><br />  
+  
+You need some additional information to make sense of those heap sort steps.<br /><br />
+  
+First you must create a JavaScript class called Heap:<br /><br />
+
+<pre>
+- has an array member property that starts out empty
+- has a method add() that:
+    - takes an object (number, string, object, whatever) as a parameter
+    - adds the object to the member array property (described above)
+- has a constructor that:
+    - takes the array to be sorted as a parameter
+    - loops over that array, calling add() for each item
+- has a method remove() that:
+    - removes the root node (described above)
+    - returns that root node
+</pre><br />  
+
+Then you create a function heapSort() that is NOT a member of the Heap class. The heapSort() function takes the array to be sorted as a parameter. It creates a Heap object using the Heap constructor. Then it iteratively makes use of the Heap method remove(), and the fact that remove() returns the removed root node. After this the original array should be sorted.<br /><br />
+  
+One additional hint, iteratively calling remove() removes the root nodes in decending order. That's what results in the sort.<br /><br />
+
+Consider performing a heap sort on this array: [ -6, -2, 2, 9, 2, 69, 1, 3, -24, -7, 0, 2, 7 ]<br /><br />
+
+Challenge - create a Heap class and a heapSort() function that together perform a heap sort.<br />
+</div>
