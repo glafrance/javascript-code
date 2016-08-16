@@ -1,0 +1,49 @@
+<pre>
+var testArray = 
+  [{ 
+    id: 5, 
+    name: 'grape' 
+  }, { 
+    id: 1, 
+    name: 'banana' 
+  }, {
+    id: 3, 
+    name: 'apple' 
+  }, {
+    id: 6, 
+    name: 'orange' 
+  }, {
+    id: 7,
+    name: 'apricot'
+  }, {
+    id: 2,
+    name: 'kiwi'
+  }, {
+    id: 4, 
+    name: 'strawberry'
+  }];
+
+function bucketSort (arr) {
+  var key, idx1, idx2, idx3, len, buckets = {};
+
+  len = arr.length;
+
+  for (idx1 = 0;idx1 < len;idx1++) {
+    key = arr[idx1].id;
+
+    if (!buckets.hasOwnProperty(key)) {
+      buckets[key] = [];
+    }
+    buckets[key].push(arr[idx1]);
+  }
+
+  idx2 = 0;
+
+  for (idx1 in buckets) {
+    len = buckets[idx1].length;
+    for (idx3 = 0;idx3 < len;idx3++) {
+      arr[idx2++] = buckets[idx1][idx3];
+    }
+  }
+}
+</pre>

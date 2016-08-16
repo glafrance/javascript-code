@@ -200,6 +200,26 @@ pre {
   height: 9rem;  
 }
 
+.rect-span {
+  display: inline-block;
+  padding-right: 1rem;
+  text-align: center;
+}
+
+.rect-span div {
+  margin-bottom: .3rem;
+  padding: .3rem;
+}
+
+.rect2rem {
+  border: .1rem solid black;
+}
+
+.blue {
+  color: blue;
+  font-weight: 700;
+}
+
 /*********************************************/
 @media all  and (max-width: 600px) {
   html {

@@ -1,0 +1,37 @@
+<div>Most sorting algorithms operate on any type of data - strings, numbers, objects, etc. They sort the items by comparing their keys, or their values if there are no keys.<br /><br />
+  
+If the keys are integers you can use a bucket sort for greater efficiency, because the keys are not compared.<br /><br />
+  
+Bucket sort works by placing items into buckets from 0 to n, where n is the upper range of the keys. Items are placed into the bucket for it's key value, so an item with a key value of 5 would be placed into the 5 bucket.<br /><br />
+  
+After the items are placed in the appropriate buckets, the items are then placed back into the original array, resulting in a sorted array.<br /><br />
+  
+A bucket sort is "stable", meaning that if two items in the original array have the same key value, their order is not changed in the sorted array.<br /><br />
+  
+Challenge - create a function that takes an array as a parameter and performs a bucket sort on the following array of fruits, by their key name, in ascending order:<br /><br />
+
+<pre>
+[{ 
+  id: 5, 
+  name: 'grape' 
+}, { 
+  id: 1, 
+  name: 'banana' 
+}, {
+  id: 3, 
+  name: 'apple' 
+}, {
+  id: 6, 
+  name: 'orange' 
+}, {
+  id: 7,
+  name: 'apricot'
+}, {
+  id: 2,
+  name: 'kiwi'
+}, {
+  id: 4, 
+  name: 'strawberry'
+}]
+</pre>  
+</div>

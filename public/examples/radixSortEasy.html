@@ -1,0 +1,240 @@
+<div>A radix sort is based on a <a href="#" onclick="showPage('bucketSortEasy.html', 'bucketSortEasySolution.html');return false;">bucket sort</a>, but a radix sort uses only ten buckets. Like a bucket sort, a radix sort operates on integer keys for greater efficiency, because the keys are not compared.<br /><br />
+  
+Radix sort works by placing items into buckets from 0 to 9, with an item being placed in the bucket according to the key.<br /><br />
+  
+Imagine these buckets, stored in an array named "b":<br /><br />
+
+<div class="rect-span">
+  <div class="rect2rem">&nbsp;</div>
+  <span>b[0]</span>
+</div>  
+  
+<div class="rect-span">
+  <div class="rect2rem">&nbsp;</div>
+  <span>b[1]</span>
+</div>  
+
+<div class="rect-span">
+  <div class="rect2rem">&nbsp;</div>
+  <span>b[2]</span>
+</div>  
+
+<div class="rect-span">
+  <div class="rect2rem">&nbsp;</div>
+  <span>b[3]</span>
+</div>  
+
+<div class="rect-span">
+  <div class="rect2rem">&nbsp;</div>
+  <span>b[4]</span>
+</div>  
+
+<div class="rect-span">
+  <div class="rect2rem">&nbsp;</div>
+  <span>b[5]</span>
+</div>  
+
+<div class="rect-span">
+  <div class="rect2rem">&nbsp;</div>
+  <span>b[6]</span>
+</div>  
+
+<div class="rect-span">
+  <div class="rect2rem">&nbsp;</div>
+  <span>b[7]</span>
+</div>  
+
+<div class="rect-span">
+  <div class="rect2rem">&nbsp;</div>
+  <span>b[8]</span>
+</div>  
+
+<div class="rect-span">
+  <div class="rect2rem">&nbsp;</div>
+  <span>b[9]</span>  
+</div><br /><br />  
+  
+For an array of items to sort, whose item keys are positive integers, in a radix sort you place the items in buckets based on their radix positions. The bucket sort is applied repeatedly for the keys various radix positions, starting with the least siginifcant position.<br /><br />
+  
+Consider sorting elements having these keys:<br /><br />
+  
+[ 331, 454, 230, 34, 343, 45, 59, 453, 345, 231, 9 ]<br /><br />
+  
+Apply the  bucket sort on the last radix position (highlighted in bold, blue), and the elements are placed in buckets as follows:<br /><br />
+
+<div class="rect-span">
+  <div class="rect2rem">23<span class='blue'>0</span></div>
+  <span>b[0]</span>
+</div>  
+  
+<div class="rect-span">
+  <div class="rect2rem">33<span class='blue'>1</span><br />23<span class='blue'>1</span></div>
+  <span>b[1]</span>
+</div>  
+
+<div class="rect-span">
+  <div class="rect2rem">&nbsp;</div>
+  <span>b[2]</span>
+</div>  
+
+<div class="rect-span">
+  <div class="rect2rem">34<span class='blue'>3</span><br />45<span class='blue'>3</span></div>
+  <span>b[3]</span>
+</div>  
+
+<div class="rect-span">
+  <div class="rect2rem">45<span class='blue'>4</span><br />3<span class='blue'>4</span></div>
+  <span>b[4]</span>
+</div>  
+
+<div class="rect-span">
+  <div class="rect2rem">4<span class='blue'>5</span><br />34<span class='blue'>5</span></div>
+  <span>b[5]</span>
+</div>  
+
+<div class="rect-span">
+  <div class="rect2rem">&nbsp;</div>
+  <span>b[6]</span>
+</div>  
+
+<div class="rect-span">
+  <div class="rect2rem">&nbsp;</div>
+  <span>b[7]</span>
+</div>  
+
+<div class="rect-span">
+  <div class="rect2rem">&nbsp;</div>
+  <span>b[8]</span>
+</div>  
+
+<div class="rect-span">
+  <div class="rect2rem">5<span class='blue'>9</span><br /><span class='blue'>9</span></div>
+  <span>b[9]</span>  
+</div><br /><br />  
+  
+Removing the items from the buckets, they are in this order:<br /><br />
+  
+[ 230, 331, 231, 343, 453, 454, 34, 45, 345, 59, 9 ]<br /><br />
+
+Now apply the  bucket sort on the second-to-last radix position, and the elements are placed in buckets as follows:<br /><br />
+
+<div class="rect-span">
+  <div class="rect2rem">9</div>
+  <span>b[0]</span>
+</div>  
+  
+<div class="rect-span">
+  <div class="rect2rem">&nbsp;</div>
+  <span>b[1]</span>
+</div>  
+
+<div class="rect-span">
+  <div class="rect2rem">&nbsp;</div>
+  <span>b[2]</span>
+</div>  
+
+<div class="rect-span">
+  <div class="rect2rem">2<span class='blue'>3</span>0<br />3<span class='blue'>3</span>1<br />2<span class='blue'>3</span>1<br /><span class='blue'>3</span>4</div>
+  <span>b[3]</span>
+</div>  
+
+<div class="rect-span">
+  <div class="rect2rem">3<span class='blue'>4</span>3<br /><span class='blue'>4</span>5<br />3<span class='blue'>4</span>5</div>
+  <span>b[4]</span>
+</div>  
+
+<div class="rect-span">
+  <div class="rect2rem">4<span class='blue'>5</span>3<br />4<span class='blue'>5</span>4<br /><span class='blue'>5</span>9</div>
+  <span>b[5]</span>
+</div>  
+
+<div class="rect-span">
+  <div class="rect2rem">&nbsp;</div>
+  <span>b[6]</span>
+</div>  
+
+<div class="rect-span">
+  <div class="rect2rem">&nbsp;</div>
+  <span>b[7]</span>
+</div>  
+
+<div class="rect-span">
+  <div class="rect2rem">&nbsp;</div>
+  <span>b[8]</span>
+</div>  
+
+<div class="rect-span">
+  <div class="rect2rem">&nbsp;</div>
+  <span>b[9]</span>  
+</div><br /><br />  
+  
+Note that 9, not having a second radix, is treated as 09.<br /><br />
+
+Removing the items from the buckets, they are in this order:<br /><br />
+  
+[ 9, 230, 331, 231, 34, 343, 45, 345, 453, 454, 59 ]<br /><br />
+
+Now apply the  bucket sort on the third-to-last radix position, and the elements are placed in buckets as follows:<br /><br />
+
+<div class="rect-span">
+  <div class="rect2rem">9<br />34<br />45<br />59</div>
+  <span>b[0]</span>
+</div>  
+  
+<div class="rect-span">
+  <div class="rect2rem">&nbsp;</div>
+  <span>b[1]</span>
+</div>  
+
+<div class="rect-span">
+  <div class="rect2rem"><span class='blue'>2</span>30<br /><span class='blue'>2</span>31</div>
+  <span>b[2]</span>
+</div>  
+
+<div class="rect-span">
+  <div class="rect2rem"><span class='blue'>3</span>31<br /><span class='blue'>3</span>43<br /><span class='blue'>3</span>45</div>
+  <span>b[3]</span>
+</div>  
+
+<div class="rect-span">
+  <div class="rect2rem"><span class='blue'>4</span>53<br /><span class='blue'>4</span>54</div>
+  <span>b[4]</span>
+</div>  
+
+<div class="rect-span">
+  <div class="rect2rem">&nbsp;</div>
+  <span>b[5]</span>
+</div>  
+
+<div class="rect-span">
+  <div class="rect2rem">&nbsp;</div>
+  <span>b[6]</span>
+</div>  
+
+<div class="rect-span">
+  <div class="rect2rem">&nbsp;</div>
+  <span>b[7]</span>
+</div>  
+
+<div class="rect-span">
+  <div class="rect2rem">&nbsp;</div>
+  <span>b[8]</span>
+</div>  
+
+<div class="rect-span">
+  <div class="rect2rem">&nbsp;</div>
+  <span>b[9]</span>  
+</div><br /><br />  
+  
+Note the numbers not having a third radix are treated as being prepended with 0s, and are placed in the 0 bucket.<br /><br />
+
+Removing the items from the buckets, they are now sorted, in this order:<br /><br />
+  
+[ 9, 34, 45, 59, 230, 231, 331, 343, 345, 453, 454 ]<br /><br />
+  
+Challenge - create a function that takes an array as a parameter and performs a radix bucket sort on the following array:<br /><br />
+
+<pre>
+[ 331, 454, 230, 34, 343, 45, 59, 453, 345, 231, 9 ]
+</pre>  
+</div>
