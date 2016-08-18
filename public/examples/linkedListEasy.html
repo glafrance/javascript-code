@@ -1,0 +1,57 @@
+<div>A linked list is a data structure making it more efficient to perform certain operations on a collection of data items, such as adding and removing elements somewhere in the list of items based on an index.<br /><br />
+  
+When creating a linked list, typically there is the concept of a node, usually implemented as its own class, function, or object, depending on the programming language.<br /><br />   
+  
+A node has a property "next", which is a reference to the node following it in the list. The "next" property for the last node in the list is null, undefined, etc. because there is no node following the last node.<br /><br />   
+  
+A linked list has properties "head" and "tail" that are references to the first and last nodes in the list.<br /><br />   
+  
+Implementations of a linked list can vary, but usually they provide methods for adding and removing nodes to/from the start and end of the list, as well as anywhere within the list based on an index.<br /><br />   
+  
+A linked list might have other methods, for example to return the number of nodes in the list, to empty the list of nodes, to return true or false if the list contains a node with specific data, or a method to return the index of nodes.<br /><br />  
+  
+Challenge - create two JavaScript classes Node and LinkedList with the following features. If you are new to object oriented programming in JavaScript here is a Paragonica tutorial on <a class="obviousLink" href="#" onclick="showPage('inheritance1Tutorial.html');return false;">inheritance in JavaScript.</a><br /><br />
+  
+You should test your implementation by creating an instance of your LinkedList class, populating it with this state data, and then calling various LinkedList functions to verify your implementation:<br /><br />
+  
+[ "Utah", "Maine", "Virginia", "South Carolina", "Hawaii", "Michigan", "Kansas", "North Dakota", "Iowa", "Oregon", "Arkansas", "Connecticut", "Florida", "Rhode Island", "Nevada", "Montana", "West Virginia", "Georgia", "Alaska", "Tennessee", "California", "Idaho", "Kentucky", "Maryland", "Missouri", "New Mexico", "Ohio", "Wisconsin", "Illinois", "Mississippi", "Delaware", "New York", "North Carolina", "Colorado", "Wyoming", "Texas", "Washington", "New Hampshire", "Louisiana", "South Dakota", "Alabama", "Vermont", "Pennsylvania", "Arizona", "Massachusetts", "New Jersey", "Oklahoma", "Indiana", "Minnesota", "Nebraska" ]<br /><br />  
+
+<h4>Node class features</h4><br />  
+
+<ul class="tutorial-item-list">
+  <li>Node() - constructor function</li>
+  <li>constructor takes one parameter for data stored in node</li>
+  <li>data - property to hold data for the Node</li>
+  <li>next - property to hold reference to next Node in list</li>
+</ul><br /><br />  
+  
+<h4>LinkedList class features</h4><br />  
+
+<ul class="tutorial-item-list">
+  <li>LinkedList() - constructor function</li>
+  <li>constructor takes one (optional) array parameter - items in list</li>
+  <li>constructor interates array parameter and calls add() to populate list</li>
+  <li>if no constructor parameter, list is empty</li>
+  <li>"head" and "tail" properties - references to first/last nodes</li>
+  <li>size property - number of nodes in list</li>
+  <li>non-constructor functions added to LinkedList prototype</li>
+  <li>getFirst() - return data for first list node</li>
+  <li>getLast() - return data for last list node</li>
+  <li>get(index) - return data for node at index</li>
+  <li>set(index, data) - change data for node at index</li>
+  <li>add(data) - create node and add it to end</li>
+  <li>addFirst(data) - create node and add it to start</li>
+  <li>addLast(data) - create node and add it to end</li>
+  <li>addAt(data, index) - create node and add it at index</li>
+  <li>remove(data) - remove and return first occurence of node with data</li>
+  <li>removeFirst() - remove and return first node</li>
+  <li>removeLast() - remove and return last node</li>
+  <li>removeAt(index) - remove and return node at index</li>
+  <li>toString() - iterate over nodes, return string "[data1, data2, ...]"</li>
+  <li>clear() - empty the list, removing all nodes, and cleaning properties</li>
+  <li>contains(data) - return true if list has node with data</li>
+  <li>indexOf(data) - return index of first node with data, -1 if not found</li>
+  <li>lastIndexOf(data) - return index of last node with data, -1 if not found</li>
+  <li>isEmpty() - return true if list size is zero</li>
+</ul>
+</div>

@@ -220,6 +220,10 @@ pre {
   font-weight: 700;
 }
 
+.tutorial-item-list {
+  margin-left: 1rem;
+}
+
 /*********************************************/
 @media all  and (max-width: 600px) {
   html {

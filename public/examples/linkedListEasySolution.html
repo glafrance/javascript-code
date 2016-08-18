@@ -1,0 +1,62 @@
+<pre>
+var states = ["Utah", "Maine", "Virginia", "South Carolina", "Hawaii", "Michigan", "Kansas", "North Dakota", "Iowa", "Oregon", "Arkansas", "Connecticut", "Florida", "Rhode Island", "Nevada", "Montana", "West Virginia", "Georgia", "Alaska", "Tennessee", "California", "Idaho", "Kentucky", "Maryland", "Missouri", "New Mexico", "Ohio", "Wisconsin", "Illinois", "Mississippi", "Delaware", "New York", "North Carolina", "Colorado", "Wyoming", "Texas", "Washington", "New Hampshire", "Louisiana", "South Dakota", "Alabama", "Vermont", "Pennsylvania", "Arizona", "Massachusetts", "New Jersey", "Oklahoma", "Indiana", "Minnesota", "Nebraska"];
+
+function mergeSort (list) {
+  var firstHalf, secondHalf, lenOne;
+  
+  // No need to proceed if there is only one item.
+  if (list.length > 1) {
+    lenOne = list.length / 2;
+    
+    // Cut half of the array into the first temp half 
+    // (cut, otherwise pass by reference messes you up).
+    firstHalf = list.splice(0, lenOne);
+    
+    // Cut other half of the array into the second temp half.
+    // Because we cut the first half we can just start at 0.
+    secondHalf = list.splice(0, list.length);
+    
+    // Perform the recursive merge sort on the first temp half.
+    mergeSort(firstHalf);
+    // Perform the recursive merge sort on the second temp half.
+    mergeSort(secondHalf);
+    
+    // Merge the two sorted temp halves into the now empty list
+    merge(firstHalf, secondHalf, list);
+  }
+}
+      
+function merge (arr1, arr2, merged) {
+  var curr1 = 0, curr2 = 0, curr3 = 0;
+  
+  // Continue until one of the arrays has been completely processed.
+  while (curr1 < arr1.length && curr2 < arr2.length) {
+    if (arr1[curr1] < arr2[curr2]) {
+      merged[curr3++] = arr1[curr1++];
+    } else {
+      merged[curr3++] = arr2[curr2++];
+    }
+  }
+  
+  // Add any remaining items from arr1 
+  // (happens for odd length original arrays).
+  while (curr1 < arr1.length) {
+    merged[curr3++] = arr1[curr1++];
+  }
+  
+  // Add any remaining items from arr2.
+  while (curr2 < arr2.length) {
+    merged[curr3++] = arr2[curr2++];
+  }
+}      
+
+console.log(states);
+mergeSort(states);
+console.log(states);
+
+OUTPUT:
+
+["Utah", "Maine", "Virginia", "South Carolina", "Hawaii", "Michigan", "Kansas", "North Dakota", "Iowa", "Oregon", "Arkansas", "Connecticut", "Florida", "Rhode Island", "Nevada", "Montana", "West Virginia", "Georgia", "Alaska", "Tennessee", "California", "Idaho", "Kentucky", "Maryland", "Missouri", "New Mexico", "Ohio", "Wisconsin", "Illinois", "Mississippi", "Delaware", "New York", "North Carolina", "Colorado", "Wyoming", "Texas", "Washington", "New Hampshire", "Louisiana", "South Dakota", "Alabama", "Vermont", "Pennsylvania", "Arizona", "Massachusetts", "New Jersey", "Oklahoma", "Indiana", "Minnesota", "Nebraska"]
+
+["Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming"]
+</pre>
