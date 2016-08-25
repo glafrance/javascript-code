@@ -1,6 +1,4 @@
-<pre>
 var testArray = [ "Utah", "Maine", "Virginia", "South Carolina", "Hawaii", "Michigan", "Kansas", "North Dakota", "Iowa", "Oregon", "Arkansas", "Connecticut", "Florida", "Rhode Island", "Nevada", "Montana", "West Virginia", "Georgia", "Alaska", "Tennessee", "California", "Idaho", "Kentucky", "Maryland", "Missouri", "New Mexico", "Ohio", "Wisconsin", "Illinois", "Mississippi", "Delaware", "New York", "North Carolina", "Colorado", "Wyoming", "Texas", "Washington", "New Hampshire", "Louisiana", "South Dakota", "Alabama", "Vermont", "Pennsylvania", "Arizona", "Massachusetts", "New Jersey", "Oklahoma", "Indiana", "Minnesota", "Nebraska" ];
-
 /**
  * Constructor for the Node class.
  * @param {*} data whatever will be stored in the node
@@ -406,4 +404,3 @@ LinkedList.prototype.lastIndexOf = function (data) {
 LinkedList.prototype.isEmpty = function () {
   return this.size === 0;
 }
-</pre>
