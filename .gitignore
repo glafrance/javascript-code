@@ -1,3 +1,9 @@
 node_modules/*
 public/test*.*
 public/google_analytics.json
+public/test/chai.js
+public/test/mocha.css
+public/test/mocha.js
+public/test4tutorial/chai.js
+public/test4tutorial/mocha.css
+public/test4tutorial/mocha.js

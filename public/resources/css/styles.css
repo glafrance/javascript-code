@@ -224,6 +224,22 @@ pre {
   margin-left: 1rem;
 }
 
+.spacingMarginLeftOneRem {
+  margin-left: 1rem;
+}
+
+.spacingMarginLeftTwoRem {
+  margin-left: 2rem;
+}
+
+.emphasis {
+  font-style: italic;
+}
+
+.bold {
+  font-weight: 700;
+}
+
 /*********************************************/
 @media all  and (max-width: 600px) {
   html {

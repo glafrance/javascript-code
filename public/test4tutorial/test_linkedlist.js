@@ -52,7 +52,7 @@ describe ('LinkedList', function () {
     linkedList = new LinkedList(testArrayOne);
     len = linkedList.size;
   });
-  
+
   describe ('basic tests', function () {
     it ('should not be undefined', function () {
       expect(linkedList).to.not.be.undefined;
@@ -86,7 +86,7 @@ describe ('LinkedList', function () {
       expect(linkedList.tail.data).to.equal('Nebraska');
     });
   });
-  
+    
   describe ('tests of individual functions', function () {
     it ('has the correct data using getFirst()', function () {
       expect(linkedList.getFirst()).to.equal('Utah');
