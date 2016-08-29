@@ -31,7 +31,7 @@ html {
   overflow-y: scroll;
 }
 
-html, a {
+html {
   font-family: arial, helvetica, sans-serif;
   color: #767676;    
 }
@@ -40,6 +40,9 @@ body {
   padding: .5rem;
 }
 
+a {
+  color: #767676;
+}
 .header-links-container {
   padding-bottom: 1rem;
 }
@@ -103,6 +106,31 @@ body {
 #main-header-title-short {
   text-align: center;
   display: none;
+}
+
+#superchallenge {
+  color: purple;
+  font-size: 1.2rem;
+}
+
+#superchallenge_title {
+  color: purple;
+}
+
+.superchallenge-item {
+  padding-top: 1rem;  
+  padding-bottom: .5rem;  
+}
+
+.superchallenge-item-title {
+  color: purple;
+  font-weight: 700;  
+  margin-bottom: .5rem;
+}
+
+.purple-line {
+  border-bottom: .1rem solid purple;
+  height: .2rem;
 }
 
 #left-column {
@@ -321,6 +349,15 @@ pre {
     margin-bottom: 1rem;
     margin-left: auto;
     margin-right: auto;
+  }
+  
+  #superchallenge {
+    font-size: 1rem;
+  }
+  
+  #superchallenge_title {
+    text-align: center;
+    font-size: 1rem;
   }
 
   #left-column {

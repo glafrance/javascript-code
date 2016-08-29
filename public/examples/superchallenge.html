@@ -1,0 +1,476 @@
+<h2 id="superchallenge_title">Paragonica Super Challenge</h2><br />
+
+The Paragonica Super Challenge is simple, but not easy. The Super Challenge is designed to keep your JavaScript programming skills strong and fresh. The challenge is to work through the following list of programming challenges one by one until you have successfully completed them all.<br /><br />
+
+To keep your JavaScript programming skills strikingly fresh, perform this challenge once a month. Better yet, perform this challenge on an on-going basis, perhaps taking on one of the following challenges each day.<br /><br />
+
+For any particular challenge, if you have difficulties or doubts, check out the relevant Paragonica tutorials, or Google as necessary.<br /><br />
+
+<div class="superchallenge-item">
+  <p class="superchallenge-item-title">FizzBuzz Challenge</p>
+  Write a program that prints the numbers from 1 to 100. But for multiples of three print "Fizz" instead of the number and for multiples of five print "Buzz". For numbers which are multiples of both three and five print "FizzBuzz".<br /><br />
+  
+  For example: 1 2 Fizz 4 Buzz Fizz 7 8 Fizz Buzz 11 Fizz 13 14 FizzBuzz 16 17 Fizz 19 Buzz and so on...
+</div>
+
+<div class="purple-line">&nbsp;</div>
+
+<div class="superchallenge-item">
+  <p class="superchallenge-item-title">Fibonacci Challenge</p>
+  The Fibonacci series is 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, ...<br /><br />
+
+  Once you get beyond the first three numbers in the Fibonacci sequence (0, 1, 1), subsequent numbers are the sum of the two previous numbers, so the 4th Fibonacci, 2 is the sum of 1 and 1, the 5th Fibonacci, 3 is the sum of 2 and 1, 5 = 3 + 2, 8 = 5 + 3, etc.<br /><br />
+
+  Write a program that returns the Nth number in the series, for example the 5th number in the series is 3 and the 10th number in the series is 34.<br /><br />
+
+  Write a program that returns an array containing the first N numbers in the Fibonacci series, for example an array of the first 10 numbers in the series is [0 1 1 2 3 5 8 13 21 34].
+</div>
+
+<div class="purple-line">&nbsp;</div>
+ 
+<div class="superchallenge-item">
+  <p class="superchallenge-item-title">Recursion Factorial Challenge</p>
+
+  In recursion a function calls itself repeatedly to arrive at some end result. It is often seen as an alternative for iteration.<br /><br />
+
+  The factorial of a number is the result of multiplying the starting number by preceding integers until the number 1 is reached<br /><br />
+
+  <pre>factorial of 3:    3 x 2 x 1 = 6</pre><br />
+
+  <pre>factorial of 6:    6 x 5 x 4 x 3 x 2 x 1 = 720</pre><br />
+
+  Write two functions factorialLoop() and factorialRecursion(), that together return the factorial of a number.
+</div>
+
+<div class="purple-line">&nbsp;</div>
+
+<div class="superchallenge-item">
+  <p class="superchallenge-item-title">Recursion Reverse-String Challenge</p>
+
+  In recursion a function calls itself repeatedly to arrive at some end result. It is often seen as an alternative for iteration.<br /><br />
+
+  Write a function to reverse a string. So given an input string of "foobar" the function would return "raboof".
+</div>
+
+<div class="purple-line">&nbsp;</div>
+
+<div class="superchallenge-item">
+  <p class="superchallenge-item-title">Recursion Map Function Challenge</p>
+
+  In recursion a function calls itself repeatedly to arrive at some end result. It is often seen as an alternative for iteration.<br /><br />
+
+  Write a function map(array, function), where the function takes two arguments, an array of input values, and a function to execute on each of the input values. The function returns a new array whose contents are the input values processed by the function argument.<br /><br />
+
+  So if called like this:<br /><br />
+
+  <pre>
+  map(['a', 'b', 'c'], function (letter) {
+    return letter.toUpperCase();
+  });
+  </pre><br />
+
+  The returned array would be:<br /><br />
+  
+  <pre>['A', 'B', 'C']</pre>  
+</div>
+
+<div class="purple-line">&nbsp;</div>
+
+<div class="superchallenge-item">
+  <p class="superchallenge-item-title">Closures Challenge</p>
+
+  When JavaScript closures are involved, variables that seem like they should disappear as they go out of scope in fact still exist and are accessible.<br /><br />
+
+  Closures solve many problems in JavaScript, and provide some interesting opportunities not found in other languages.<br /><br />
+
+  Write several functions to illustrate your understanding of JavaScript closures and some of the ways they can be useful to us.
+</div>
+
+<div class="purple-line">&nbsp;</div>
+
+<div class="superchallenge-item">
+  <p class="superchallenge-item-title">Shuffle Array Challenge (Non-In-Place)</p>
+
+Write a function shuffleArray(arr) that takes an array parameter and returns a shuffled new array (NOT the original array, do NOT shuffle in place, for example do NOT use the Fisher–Yates shuffle), so the returned array has the items in random order.<br /><br />
+
+You can test this by printing out both the original array and the returned array AFTER the shuffled array is returned. Use the following array of state names as test data:<br /><br />
+
+['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming']
+</div>
+
+<div class="purple-line">&nbsp;</div>
+
+<div class="superchallenge-item">
+  <p class="superchallenge-item-title">Fisher–Yates Shuffle Array Challenge (In-Place Shuffle)</p>
+
+Write a function shuffleArray(arr) that takes an array parameter and shuffles the array in-place using the Fisher–Yates shuffle, so the original array has the items in random order.<br /><br />
+
+Use the following array of state names as test data:<br /><br />
+
+['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming']
+</div>
+
+<div class="purple-line">&nbsp;</div>
+
+<div class="superchallenge-item">
+  <p class="superchallenge-item-title">LinkedList Challenge</p>
+
+Create two JavaScript classes, Node and LinkedList, that implement a linked list. There are many ways to implement classes in JavaScript, so you can implement Node and LinkedList however you would like.<br /><br />
+
+The Node and LinkedList classes should have the following features:<br /><br />
+
+<h4>Node class features</h4><br />  
+
+<ul class="tutorial-item-list">
+  <li>Node() - constructor function</li>
+  <li>constructor takes one parameter for data stored in node</li>
+  <li>data - property to hold data for the Node</li>
+  <li>next - property to hold reference to next Node in list</li>
+</ul><br /> 
+  
+<h4>LinkedList class features</h4><br />  
+
+<ul class="tutorial-item-list">
+  <li>LinkedList() - constructor function</li>
+  <li>constructor takes one (optional) array parameter - items in list</li>
+  <li>constructor interates array parameter and calls add() to populate list</li>
+  <li>if no constructor parameter, list is empty</li>
+  <li>"head" and "tail" properties - references to first/last nodes</li>
+  <li>size property - number of nodes in list</li>
+  <li>non-constructor functions added to LinkedList prototype</li>
+  <li>getFirst() - return data for first list node</li>
+  <li>getLast() - return data for last list node</li>
+  <li>get(index) - return data for node at index</li>
+  <li>set(index, data) - change data for node at index</li>
+  <li>add(data) - create node and add it to end</li>
+  <li>addFirst(data) - create node and add it to start</li>
+  <li>addLast(data) - create node and add it to end</li>
+  <li>addAt(data, index) - create node and add it at index</li>
+  <li>remove(data) - remove and return first occurence of node with data</li>
+  <li>removeFirst() - remove and return first node</li>
+  <li>removeLast() - remove and return last node</li>
+  <li>removeAt(index) - remove and return node at index</li>
+  <li>toString() - iterate over nodes, return string "[data1, data2, ...]"</li>
+  <li>clear() - empty the list, removing all nodes, and cleaning properties</li>
+  <li>contains(data) - return true if list has node with data</li>
+  <li>indexOf(data) - return index of first node with data, -1 if not found</li>
+  <li>lastIndexOf(data) - return index of last node with data, -1 if not found</li>
+  <li>isEmpty() - return true if list size is zero</li>
+</ul><br />
+
+
+Use the following array of state names as test data to populate the linked list:<br /><br />
+
+['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming']
+</div>
+
+<div class="purple-line">&nbsp;</div>
+
+<div class="superchallenge-item">
+  <p class="superchallenge-item-title">Bubble Sort Challenge (easier)</p>
+
+  Bubble sort algorithms repeatedly step through a list of items to be sorted. Adjacent items are compared and swapped if they are in the wrong order. You repeat going through the list until no swaps are needed, indicating the list is sorted. Bubble sort is named for the way elements 'bubble' to the top of the list.<br /><br />
+
+  Write a function that takes an array as a parameter and performs a bubble sort to sort the following array of fruits in alphabetical order:<br /><br />
+
+  [ 'grape', 'banana', 'apple', 'orange', 'apricot', 'kiwi', 'strawberry']
+</div>
+
+<div class="purple-line">&nbsp;</div>
+
+<div class="superchallenge-item">
+  <p class="superchallenge-item-title">Bubble Sort Challenge (more difficult)</p>
+
+  Create a function taking two arrays as parameters, an array of US state names in random order to be sorted, and an array of letters used in the sort. The resultant state names should be sorted first using the letters in the second parameter array, and then the remaining state names should simply be sorted in alphabetical order.<br /><br />
+
+  So if the second parameter array contains these letters: [ 'm', 'c', 'n' ], the sorted array will start with states beginning with 'm', then 'c', then 'n' (alphabetically sorted within those groups), followed by the rest of the states in alphabetical order (those beginning with 'a', then 'd', then 'e', etc.)<br /><br />
+
+  So given this array of US state names:<br /><br />
+
+  [ "Utah", "Maine", "Virginia", "South Carolina", "Hawaii", "Michigan", "Kansas", "North Dakota", "Iowa", "Oregon", "Arkansas", "Connecticut", "Florida", "Rhode Island", "Nevada", "Montana", "West Virginia", "Georgia", "Alaska", "Tennessee", "California", "Idaho", "Kentucky", "Maryland", "Missouri", "New Mexico", "Ohio", "Wisconsin", "Illinois", "Mississippi", "Delaware", "New York", "North Carolina", "Colorado", "Wyoming", "Texas", "Washington", "New Hampshire", "Louisiana", "South Dakota", "Alabama", "Vermont", "Pennsylvania", "Arizona", "Massachusetts", "New Jersey", "Oklahoma", "Indiana", "Minnesota", "Nebraska" ]<br /><br />
+
+  And this array of sort letters:<br /><br />
+
+  [ 'm', 'c', 'n' ]<br /><br />
+
+  This will be the resultant sorted array:<br /><br />
+
+  [ "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "California", "Colorado", "Connecticut", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Alabama", "Alaska", "Arizona", "Arkansas", "Delaware", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming" ]<br /><br />
+
+  NOTE: the secondary sort using the second parameter array does not need to be performed directly within the bubble sort mechanism. Just achieve the desired result. Also, you can either sort the array in place (because arrays are passed into functions by reference), or you can return the resultant array from the function.
+</div>
+
+<div class="purple-line">&nbsp;</div>
+
+<div class="superchallenge-item">
+  <p class="superchallenge-item-title">Insertion Sort Challenge</p>
+
+  Insertion sort algorithms progress through an array of items to be sorted, inserting elements into a sorted sub-list until the entire array is sorted.<br /><br />
+  
+  Write a function that takes an array as a parameter and performs an insertion sort to sort the following array of state names in alphabetical order:<br /><br />
+
+  ["Utah", "Maine", "Virginia", "South Carolina", "Hawaii", "Michigan", "Kansas", "North Dakota", "Iowa", "Oregon", "Arkansas", "Connecticut", "Florida", "Rhode Island", "Nevada", "Montana", "West Virginia", "Georgia", "Alaska", "Tennessee", "California", "Idaho", "Kentucky", "Maryland", "Missouri", "New Mexico", "Ohio", "Wisconsin", "Illinois", "Mississippi", "Delaware", "New York", "North Carolina", "Colorado", "Wyoming", "Texas", "Washington", "New Hampshire", "Louisiana", "South Dakota", "Alabama", "Vermont", "Pennsylvania", "Arizona", "Massachusetts", "New Jersey", "Oklahoma", "Indiana", "Minnesota", "Nebraska"]
+</div>
+
+<div class="purple-line">&nbsp;</div>
+
+<div class="superchallenge-item">
+  <p class="superchallenge-item-title">Merge Sort Challenge</p>
+
+  Merge sort algorithms divide an array of items to be sorted into two temporary arrays, recursively apply the merge sort on the two temporary arrays, and then merge the two sorted temporary arrays into the final sorted array.<br /><br />
+
+  Write two functions that achieve a merge sort to sort the following array of state names in alphabetical order. One of these functions will take the array to be sorted. The other function takes three arrays and merges the first two into the third (the third parameter array is empty). The first function uses the second function as it merges the two temporary arrays during the merge sort.<br /><br />
+
+  ["Utah", "Maine", "Virginia", "South Carolina", "Hawaii", "Michigan", "Kansas", "North Dakota", "Iowa", "Oregon", "Arkansas", "Connecticut", "Florida", "Rhode Island", "Nevada", "Montana", "West Virginia", "Georgia", "Alaska", "Tennessee", "California", "Idaho", "Kentucky", "Maryland", "Missouri", "New Mexico", "Ohio", "Wisconsin", "Illinois", "Mississippi", "Delaware", "New York", "North Carolina", "Colorado", "Wyoming", "Texas", "Washington", "New Hampshire", "Louisiana", "South Dakota", "Alabama", "Vermont", "Pennsylvania", "Arizona", "Massachusetts", "New Jersey", "Oklahoma", "Indiana", "Minnesota", "Nebraska"] 
+</div>
+
+<div class="purple-line">&nbsp;</div>
+
+<div class="superchallenge-item">
+  <p class="superchallenge-item-title">Bucket Sort Challenge</p>
+
+  Most sorting algorithms operate on any type of data - strings, numbers, objects, etc. They sort the items by comparing their keys, or their values if there are no keys.<br /><br />
+
+  If the keys are integers you can use a bucket sort for greater efficiency, because the keys are not compared.<br /><br />
+
+  Bucket sort works by placing items into buckets from 0 to n, where n is the upper range of the keys. Items are placed into the bucket for it's key value, so an item with a key value of 5 would be placed into the 5 bucket.<br /><br />
+
+  After the items are placed in the appropriate buckets, the items are then placed back into the original array, resulting in a sorted array.<br /><br />
+
+  A bucket sort is "stable", meaning that if two items in the original array have the same key value, their order is not changed in the sorted array.<br /><br />
+
+  Write a function that takes an array as a parameter and performs a bucket sort on the following array of fruits, by their key name, in ascending order:<br /><br />
+
+  <pre>
+    [{ 
+      id: 5, 
+      name: 'grape' 
+    }, { 
+      id: 1, 
+      name: 'banana' 
+    }, {
+      id: 3, 
+      name: 'apple' 
+    }, {
+      id: 6, 
+      name: 'orange' 
+    }, {
+      id: 7,
+      name: 'apricot'
+    }, {
+      id: 2,
+      name: 'kiwi'
+    }, {
+      id: 4, 
+      name: 'strawberry'
+    }]
+  </pre>
+</div>
+
+<div class="purple-line">&nbsp;</div>
+
+<div class="superchallenge-item">
+  <p class="superchallenge-item-title">Radix Sort Challenge</p>
+
+  A radix sort is based on a bucket sort, but a radix sort uses only ten buckets. Like a bucket sort, a radix sort operates on integer keys for greater efficiency, because the keys are not compared.<br /><br />
+
+  Radix sort works by placing items into buckets from 0 to 9, with an item being placed in the bucket according to the key.<br /><br />
+
+  Write a function that takes an array as a parameter and performs a radix bucket sort on the following array:<br /><br />
+
+  [ 331, 454, 230, 34, 343, 45, 59, 453, 345, 231, 9 ]
+</div>
+
+<div class="purple-line">&nbsp;</div>
+
+<div class="superchallenge-item">
+  <p class="superchallenge-item-title">Quick Sort Challenge</p>
+
+  Quick sort is a "divide and conquer" algorithm, similar to the merge sort, because it recursively divides an array and operates on the two halves. The array is not really divided, but several indexes allow the algorithm to operate on separate "partitions" of the array.<br /><br />
+
+  Quick sort selects a pivot value within the array, and (virtually) divides the array into two partial arrays, where all values in one of the partial arrays are less than the pivot value, and all values in the other partial array are greater than the pivot value. Then a quick sort is recursively performed on each of the two partial arrays.<br /><br />
+
+  Write one or more functions that together perform a quick sort on this array: [ 5, 2, 9, 3, 8, 4, 0, 1, 6, 7 ]. You probably need three functions.
+</div>
+
+<div class="purple-line">&nbsp;</div>
+
+<div class="superchallenge-item">
+  <p class="superchallenge-item-title">Heap Sort Challenge</p>
+
+  Heap sort makes use of a binary heap. A binary heap is a "complete" binary tree. Also, in a binary heap each node in the tree is greater than or equal to any of its descendant nodes.<br /><br />
+
+  A binary tree is represented by a root node at the top, and two child binary trees, referred to as the left subtree and the right subtree.<br /><br />
+
+  A binary tree is "complete" if each of its levels is full, with the exception that if the last level is not full, then at that last level all the leaves are placed on the left.<br /><br />
+
+  Write a JavaScript class Heap and a separate heapSort() function (not part of the class) that together perform a heap sort.
+</div>
+
+<div class="purple-line">&nbsp;</div>
+
+<div class="superchallenge-item">
+  <p class="superchallenge-item-title">Mocha/Chai Unit Tests Challenge</p>
+
+  There are many frameworks for testing your JavaScript, but Mocha and Chai are a great way to quickly get started.<br /><br />
+
+  Mocha is a simple JavaScript testing framework where tests can be run in Node.js or in the browser.<br /><br />
+
+  Chai is an assertion library, necessary in this case because Mocha does not come with its own assertions.<br /><br />
+  
+  Doing research if necessary on Mocha and Chai, implement the following unit tests, including supporting code and setup such as beforeEach(), for your Node and LinkedList classes created for an earlier challenge:<br /><br />
+  
+  <h4>Node class unit tests</h4><br />  
+
+  <pre>
+    it ('should not be undefined', function () {
+      // your implementation here
+    });
+    
+    it ('should be correct type', function () {
+      // your implementation here
+    });
+    
+    it ('should not be incorrect type', function () {
+      // your implementation here
+    });
+
+    it ('should have the data passed to constructor', function () {
+      // your implementation here
+    });
+    
+    it ('should not have data different from the data passed to constructor', function () {
+      // your implementation here
+    });
+
+    it ('should have proper default value for "next" property', function () {
+      // your implementation here
+    });    
+  </pre><br />
+
+  <h4>LinkedList class unit tests</h4><br />  
+
+  <pre>
+    it ('should not be undefined', function () {
+      // your implementation here
+    });
+
+    it ('should be correct type', function () {
+      // your implementation here
+    });
+    
+    it ('should not be incorrect type', function () {
+      // your implementation here
+    });
+    
+    it ('should have the data passed to constructor', function () {
+      // your implementation here
+    });
+    
+    it ('should not have data different from the data passed to constructor', function () {
+      // your implementation here
+    });
+    
+    it ('should have correct initial size', function () {
+      // your implementation here
+    });
+
+    it ('should have correct initial head data value', function () {
+      // your implementation here
+    });
+
+    it ('should have correct initial tail data value', function () {
+      // your implementation here
+    });
+    
+    it ('has the correct data using getFirst()', function () {
+      // your implementation here
+    });
+
+    it ('has the correct data using getLast()', function () {
+      // your implementation here
+    });
+    
+    it ('has the correct data using get() with various indexes', function () {
+      // your implementation here
+    });
+    
+    it ('has the correct data using set() with various indexes', function () {
+      // your implementation here
+    });    
+    
+    it ('has the correct data using add() to append a node to end', function () {
+      // your implementation here
+    });
+    
+    it ('has the correct data using addFirst() to prepend a node to start', function () {
+      // your implementation here
+    });
+    
+    it ('has the correct data using addLast() to append a node to end', function () {
+      // your implementation here
+    });
+    
+    it ('has the correct data using addAt() to append nodes at various locations', function () {
+      // your implementation here
+    });
+            
+    it ('should indicate list created with no items is empty', function () {
+      // your implementation here
+    });
+    
+    it('should indicate removeFirst() removed the first item', function () {
+      // your implementation here
+    });
+
+    it('should indicate removeFirst() run iteratively removed all items', function () {
+      // your implementation here
+    });
+    
+    it('should indicate removeLast() removed the last item', function () {
+      // your implementation here
+    });
+
+    it('should indicate removeLast() run iteratively removed all items', function () {
+      // your implementation here
+    });
+    
+    it('should indicate removeAt() removed the correct item', function () {
+      // your implementation here
+    });
+    
+    it('should indicate clear() removed all items and reset properties', function () {
+      // your implementation here
+    });
+
+    it('should indicate if list contains various items', function () {
+      // your implementation here
+    });
+    
+    it ('has the correct data using remove() to delete first occurrence of data', function () {
+      // your implementation here
+    });
+
+    it ('has the correct data using indexOf() search for first occurrence of data', function () {
+      // your implementation here
+    });
+    
+    it ('has the correct data using lastIndexOf() search for first occurrence of data', function () {
+      // your implementation here
+    });  
+  </pre>      
+</div>
+
+<div class="purple-line">&nbsp;</div><br />
+
+That's it !!! If you've made it this far and actually performed all the challenges to completion, congratulations !!!<br /><br />
+
+But you can't stop there. If you want your programming skills to remain sharp, you should go through this challenge once every month or two.<br /><br />
+
+I recommend doing one of the less time consuming challenges each night, or over a couple of evenings, and performing the more difficult challenges on the weekends.<br /><br />
+
+That may sound crazy, but if there are unexpected layoffs, or if you want to find a different JavaScript developer position for whatever reason, employers these days really want to see strong programming skills in raw JavaScript!<br /><br />
+
+So dig in, stay fresh, you won't regret it!
+
+<br /><br />
