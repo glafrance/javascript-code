@@ -137,3 +137,20 @@ function showSolution () {
     document.getElementById('solution').style.display = "none";
   }
 }
+
+function showInlineSolution (event) {
+  var button = event.target;
+  var solutionDiv = button.parentNode.getElementsByClassName('solution-div');
+  var display = "block";
+
+  if (button.textContent === "Show Solution") {
+    button.textContent = "Hide Solution";
+    display = "block";
+  } else {
+    button.textContent = "Show Solution";
+    display = "none";
+  }
+  if (solutionDiv && solutionDiv.length > 0) {
+    solutionDiv[0].style.display = display;
+  }
+}

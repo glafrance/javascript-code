@@ -163,18 +163,26 @@ a.obviousLink, a.obviousLink:active, a.obviousLink:focus, a.obviousLink:hover {
   color: blue;
 }
 
-#challenge-content, #show-solution, #solution {
+#challenge-content, .show-solution, .show-inline-solution, #solution {
   margin-bottom: 1rem;
 }
 
-#show-solution {
+.solution-div {
+  margin-top: 1rem;
+}
+
+.show-solution, .show-inline-solution {
   display: block;
   color: green;
   font-weight: bold;
 }
 
-#challenge-content, #solution, #show-solution, #tutorial-content {
+#challenge-content, #solution, .solution-div, .show-solution, #tutorial-content {
   display: none;
+}
+
+.coding-exercise-title {
+  margin-top: 1rem;
 }
 
 pre {

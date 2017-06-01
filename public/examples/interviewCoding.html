@@ -1,0 +1,246 @@
+The following are coding exercises similar to those you might see in an interview. Master these exercises and master the interview!<br />
+
+<div>
+  <h4 class="coding-exercise-title">Efficiently adding event listeners</h4><br />
+
+  <p>Given this HTML, write code in raw JavaScript so a click pops up an alert showing the item's text, for example "Wash the car".</p><br/>
+  <p><strong>Your challenge is to make your code solution efficient, in case there are 10,000 items.</strong></p><br/>
+
+  <pre>
+    &lt;ul id=&quot;todo-app&quot;&gt;
+      &lt;li class=&quot;item&quot;&gt;Wash the car&lt;/li&gt;
+      &lt;li class=&quot;item&quot;&gt;Buy groceries&lt;/li&gt;
+      &lt;li class=&quot;item&quot;&gt;Make dinner&lt;/li&gt;
+      &lt;li class=&quot;item&quot;&gt;Practice coding&lt;/li&gt;
+    &lt;/ul&gt;</pre><br />
+
+  <a id="show-inline-solution" class="show-inline-solution" href="#" 
+    onclick="showInlineSolution(event);return false;">Show Solution</a>
+
+  <div class="solution-div">
+    <pre id="inline-solution" class="inline-solution">
+    // DOMContentLoaded event fires when initial HTML document is 
+    // completely loaded and parsed, without waiting for stylesheets, 
+    // images, and subframes to finish loading. 
+    // Popular mistake to use load event where DOMContentLoaded 
+    // would be much more appropriate.
+    document.addEventListener('DOMContentLoaded', function() {
+      // get a reference to the &lt;ul&gt;
+      var app = document.getElementById('todo-app');
+      
+      // attach event listener to container of the items.
+      // attaching event listener to each item would be
+      // non-performant for large number of items.
+      // This is called "event delegation".
+      app.addEventListener('click', function(e) {
+        if (e.target && e.target.nodeName === 'LI') {
+          alert('you clicked on item: ' + e.target.innerHTML);
+        }
+      });  
+    });</pre><br />
+  </div>
+</div>
+<hr />
+
+<div>
+  <h4 class="coding-exercise-title">Printing loop indexes with 3 second delay</h4><br />
+
+  <p>Write a function that will execute a for loop three times and console.log() the current index of the loop after a one second delay.</p><br/>
+  <p><strong>Your challenge is to provide an ES5 solution and a simpler ES6 solution.</strong></p><br/>
+
+  <a id="show-inline-solution" class="show-inline-solution" href="#" 
+    onclick="showInlineSolution(event);return false;">Show Solution</a>
+
+  <div class="solution-div">
+    <p>You need to use the setTimeout() function to achieve the one second delay. The problem is that the setTimeout() function creates a closure, and the function argument to setTimeout() has access to variables outside the function (the loop counter), so although setTimeout() is called three times as the loop index changes, because of the closure all three console.log() will print the index value of 4 (the index value after the loop ends).</p><br />
+
+    <h4>ES5 Solution (IIFE - immediately invoked function expression)</h4><br />
+    <pre id="inline-solution" class="inline-solution">
+    for (var i = 0; i < 3; i++) {
+      // return an immediately executed function expression, 
+      // passing the variable i so that each function 
+      // has access to the correct index
+      setTimeout(function(index) {
+        return function() {
+          console.log(index);
+        }
+      }(i), 1000);
+    }</pre><br />
+
+    <p>The ES5 solution makes use of an immediately invoked function expression to create a new scope with the current value of the loop index passed in.</p><br />
+
+    <h4>ES6 Solution ("let" keyword creates new scope)</h4><br />
+    <pre id="inline-solution" class="inline-solution">
+    for (let i = 0; i < 3; i++) {
+      // using the ES6 "let" keyword, create a new binding
+      // every time the function is called
+      setTimeout(function() {
+        console.log(i);
+      }, 1000);
+    }</pre><br />
+
+    <p>The ES6 solution makes use of the "let" keyword to create a new scope variable for every loop iteration.</p><br />
+  </div>
+</div>
+
+<hr />
+
+<div>
+  <h4 class="coding-exercise-title">Replicate the lodash _.difference() function</h4><br />
+
+  <p>Lodash is a JavaScript utility library with many useful functions. You access lodash functions with the _ (underscore, or "lodash").</p><br />
+
+  <p>The lodash difference() function takes two arrays as parameters, and returns a new array containing the elements from array parameter one that were not found in array parameter two. The lodash version of difference() does not remove duplicates in the returned array.</p><br />
+
+  <p>Replicate the lodash difference() function. Your function does not need to be accessed with _.difference(arr1, arr2), but simply difference(arr1, arr2).</p><br />
+
+  <p>These two arrays will be passed to difference():</p><br />
+
+  <pre id="inline-solution" class="inline-solution">
+    [10, 30, 70, 25, 10]
+    [25, 30, 90, 65, 30]</pre><br />
+
+  <p>Expected output ( the array returned from difference(arr1, arr2) ):</p><br />
+
+  <pre id="inline-solution" class="inline-solution">
+    [10, 70, 10]</pre><br />
+
+   <p>Provide ES5 and ES6 solutions (make the ES6 solution as concise as possible)</p><br />
+
+  <a id="show-inline-solution" class="show-inline-solution" href="#" 
+    onclick="showInlineSolution(event);return false;">Show Solution</a>
+
+  <div class="solution-div">
+    <h4>ES5 Solution</h4><br />
+
+    <pre id="inline-solution" class="inline-solution">
+      var arr1 = [10, 30, 70, 25, 10];
+      var arr2 = [25, 30, 90, 65, 30];
+
+      function difference (a1, a2) {
+        var result = [], idx = 0, len = a1.length;
+
+        for (;idx < len;idx++) {
+          if (a2.indexOf(a1[idx]) === -1) {
+            result.push(a1[idx]);
+          }
+        }
+
+        return result;
+      }</pre><br />
+
+    <h4>ES6 Solution</h4><br />
+
+    <pre id="inline-solution" class="inline-solution">
+      const arr1 = [10, 30, 70, 25, 10];
+      const arr2 = [25, 30, 90, 65, 30];
+
+      const difference = (a1, a2) =>  a1.filter((item) => a2.indexOf(item) === -1);</pre><br />
+  </div>
+</div>
+
+<hr />
+
+<div>
+  <h4 class="coding-exercise-title">Replicate the lodash _.flattenDeep() function</h4><br />
+
+  <p>Lodash is a JavaScript utility library with many useful functions. You access lodash functions with the _ (underscore, or "lodash").</p><br />
+
+  <p>The lodash flattenDeep() function takes an array as a parameter, where the elements of the input array may be sub-arrays, and returns a new array containing the elements from the array parameter, where there are no longer any sub-arrays.</p><br />
+
+  <p>Replicate the lodash flattenDeep() function. Your function does not need to be accessed with _.flattenDeep(arr), but simply flattenDeep(arr).</p><br />
+
+  <p>This array will be passed to flattenDeep():</p><br />
+
+  <pre id="inline-solution" class="inline-solution">
+    [1, [2, [3, [4]], 5]]</pre><br />
+
+  <p>Expected output ( the array returned from flattenDeep(arr) ):</p><br />
+
+  <pre id="inline-solution" class="inline-solution">
+    [1, 2, 3, 4, 5]</pre><br />
+
+   <p>Provide ES5 and ES6 solutions (make the ES6 solution as concise as possible)</p><br />
+
+  <a id="show-inline-solution" class="show-inline-solution" href="#" 
+    onclick="showInlineSolution(event);return false;">Show Solution</a>
+
+  <div class="solution-div">
+    <h4>ES5 Solution</h4><br />
+
+    <pre id="inline-solution" class="inline-solution">
+      var arr = [1, [2, [3, [4]], 5]];
+
+      function flattenDeep (input) {
+        var result = [], idx = 0, len = input.length;
+
+        for (;idx < len;idx++) {
+          var item = input[idx];
+          if (typeof item !== 'undefined' && item && item.constructor === Array ) {
+            result = result.concat(flattenDeep(item));
+          } else {
+            result.push(item);
+          }
+        }</pre><br />
+
+    <h4>ES6 Solution</h4><br />
+
+    <pre id="inline-solution" class="inline-solution">
+      const arr = [1, [2, [3, [4]], 5]];
+
+      const flattenDeep = list => list.reduce(
+        (a, b) => a.concat(Array.isArray(b) ? flattenDeep(b) : b), []
+      );</pre><br />
+  </div>
+</div>
+
+
+<hr />
+
+<div>
+  <h4 class="coding-exercise-title">Replicate the lodash _.memoize() function</h4><br />
+
+  <p>Lodash is a JavaScript utility library with many useful functions. You access lodash functions with the _ (underscore, or "lodash").</p><br />
+
+  <p>The lodash memoize() function improves the performance of recursive functions that choke with large inputs. It does this by accepting the function to memoize as an argument. Then, memoize uses an immediately executing function expression (IEFE) that returns a function. The returned function uses the arguments of the memoized function as a cache key, and stores function return values in the cache, so the memoized function does not have to be called unnecessarily.</p><br />
+
+  <p>Replicate the lodash memoize() function. Your function does not need to be accessed with _.memoize(func), but simply memoize(func).</p><br />
+
+  <p>To test your solution, you will pass the following function to memoize() which calculates the Nth Fibonacci:</p><br />
+
+  <pre id="inline-solution" class="inline-solution">
+    function doFibonacci (n) {
+      if (n === 0 || n === 1)
+        return n;
+      else
+        return doFibonacci(n - 1) + doFibonacci(n - 2);
+    }
+          
+    var fibonacci = memoize(doFibonacci);
+
+    console.log(fibonacci(10));</pre><br />
+
+  <p>Note: do not call the fibonacci() method with values larger than 35, or your browser could freeze.</p><br />
+
+  <a id="show-inline-solution" class="show-inline-solution" href="#" 
+    onclick="showInlineSolution(event);return false;">Show Solution</a>
+
+  <div class="solution-div">
+    <pre id="inline-solution" class="inline-solution">
+      function memoize(func) {
+        var cache = {};
+        return function() {
+          var key = JSON.stringify(arguments);
+          if(cache[key]) {
+            return cache[key];
+          }
+          else {
+            var val = func.apply(this, arguments);
+            cache[key] = val;
+            return val;
+          }
+        };
+      }</pre><br />
+  </div>
+</div>
+
