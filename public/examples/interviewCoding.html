@@ -244,3 +244,80 @@ The following are coding exercises similar to those you might see in an intervie
   </div>
 </div>
 
+<hr />
+
+<div>
+  <h4 class="coding-exercise-title">Implement a "debounce" function, so the following scroll event handler only executes once every 200 miliseconds:</h4><br />
+
+  <p>Using a debounce function is sometimes necessary for events that could potentially fire thousands of times per second, such as the scroll event and the window resize event. This can seriously affect performance. Another example is a button that the user might click multiple times. If the button click results in an ajax call to get backend data, you want to ensure if the user clicks multiple times, you limit the backend calls.</p><br />
+
+  <p>This will be the index.html you use to test your solution. It has an empty debounce() function where you should put your solution:</p><br />
+
+  <pre id="inline-solution" class="inline-solution">
+    &lt;html&gt;
+      &lt;head&gt;
+        &lt;style&gt;
+          ul {
+            width: 300px;
+            height: 200px;
+            overflow: scroll;
+          }
+        &lt;/style&gt;
+      &lt;/head&gt;
+      &lt;body&gt;
+        &lt;ul id="list" /&gt;
+        &lt;script type="text/javascript"&gt;
+          // dynamically add &lt;li&gt; list items
+          let list = document.getElementById("list");
+
+          for (let idx = 0;idx < 1000;idx++) {
+            let item = document.createElement('li');
+            item.appendChild(document.createTextNode("item" + idx));
+            list.appendChild(item);        
+          }
+
+          function scrollHandler () {
+            console.log("scrollHandler was executed!");
+          }
+
+          function debounce (delay, func) {
+            // YOUR IMPLEMENTATION OF THE DEBOUNCE FUNCTION GOES HERE
+          }
+
+          // wrap our function in the debounce() returned function so our
+          // is only called every 200 milliseconds
+          list.addEventListener('scroll', debounce(200, scrollHandler)); 
+        &lt;/script&gt;
+      &lt;/body&gt;
+    &lt;/html&gt;
+  </pre>
+
+  <a id="show-inline-solution" class="show-inline-solution" href="#" 
+    onclick="showInlineSolution(event);return false;">Show Solution</a>
+
+  <div class="solution-div">
+    <pre id="inline-solution" class="inline-solution">
+      function debounce (delay, func) {
+        let timer = null;
+
+        // returned closure function has access to the timer
+        return function () {
+          // ensure the scope and parameters are obtained 
+          // from the debounce() function
+          let scope = this;
+          let parameters = arguments;
+
+          // everytime the event handler is called, 
+          // clear and then reset the timer
+          clearTimeout(timer);
+          timer = setTimeout(function () {
+            // the function that was debounced (scrollHandler) will be called
+            // every 300 milliseconds
+            func.apply(scope, parameters);
+          }, delay);
+        }
+      }    
+    </pre><br />
+  </div>
+</div>
+
